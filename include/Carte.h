@@ -7,8 +7,8 @@
 class Carte 
 //Classe qui definit les proprietes caracteristique de chaque carte durant le jeu
 {
-	Couleur couleur;                 //types possibles pour une carte 
-	Valeur valeur;                   //valeurs possibles pour une carte
+	string couleur;                  //types possibles pour une carte 
+	string valeur;                   //valeurs possibles pour une carte
     bool atout = 0;                  //0 si couleur==atout ,sinon 1
     bool accee = 1;                  //1 si le joueur peut sortir la carte(disponible) ,0 sinon
     int val_atout;                   // valeur d'une carte en atout
@@ -18,17 +18,17 @@ class Carte
 public:
 
     Carte();                             //Constructeur par default
-    Carte(Valeur val,Couleur coul);      //Constructeur avec parametres
+    Carte(string val,string coul);      //Constructeur avec parametres
     ~Carte();
 
-	Couleur getCouleur();                //retourne l'attribut couleur
-	Valeur getValeur();                  //retourne l'attribut valeur
+	string& getCouleur();                //retourne l'attribut couleur
+	string& getValeur();                  //retourne l'attribut valeur
     bool& getAtout();                    //retourne l'attribut booleen atout
-    int getVal_atout();                  //retourne la valeur de la carte en atout
-    int getVal_hors_atout();             //retourne la valeur de la carte en hors atout
+    int& getVal_atout();                  //retourne la valeur de la carte en atout
+    int& getVal_hors_atout();             //retourne la valeur de la carte en hors atout
 	
 	
-	int compare (Carte obj ,Couleur at); //Compare entre deux cartes
+	int compare (Carte obj ,string at); //Compare entre deux cartes
 };
 
 #endif

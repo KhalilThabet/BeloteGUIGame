@@ -18,7 +18,7 @@ protected:
 
 public:
 
-
+	Joueur();
 	Joueur(string,int);      //constructeur avec parametres
 	int& getRang();			           //Accesseur de l'attribut Rang
 	string getNom(); 				   //Accesseur de l'attribut Nom

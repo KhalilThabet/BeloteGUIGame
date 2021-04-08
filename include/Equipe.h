@@ -15,9 +15,9 @@ class Equipe
    bool atout=0;                    // Un booleen qui indique si l'equipe designee a choisi l'atout ou non
 
 public:
-
-	Equipe(Joueur&,Joueur&);     //Constructeur d'equipe de deux joueurs
-	int& getScore();                  //Accesseurs de l'attribut privee score
+   Equipe();
+	Equipe(Joueur&,Joueur&);         //Constructeur d'equipe de deux joueurs
+	int& getScore();                 //Accesseurs de l'attribut privee score
    void setatout(int a);            //Mutateur de l'attribut privee atout
 
 };

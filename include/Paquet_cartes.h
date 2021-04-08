@@ -12,7 +12,7 @@ class Paquet_cartes
                                                   contenant les cartes d'un joueur*/
 
     public:
-
+            Paquet_cartes();
             Paquet_cartes(vector<Carte>&);      //Creation de l'objet paquet de cartes
             ~Paquet_cartes();                   //Destructeur du paquet de cartes
             vector<Carte>& getPaquet();         //Accesseur a l'aatribut Paquet
