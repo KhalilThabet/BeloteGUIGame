@@ -1,6 +1,8 @@
 #include "Equipe.h"
 #include "Joueur.h"
-
+Equipe::Equipe(){
+    team={};
+}
 Equipe::Equipe(Joueur& J1,Joueur& J2)
 {
     team.push_back(J1);

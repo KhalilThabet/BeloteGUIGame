@@ -1,7 +1,9 @@
 #include "Paquet_cartes.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+Paquet_cartes::Paquet_cartes(){
+    Paquet ={};
+}
 Paquet_cartes::Paquet_cartes(vector<Carte>& receivedCards)
 {
     Paquet = receivedCards;

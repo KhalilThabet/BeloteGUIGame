@@ -2,11 +2,10 @@
 #include <fstream>
 #include <iostream>
 #include <stdlib.h>
-
 Table::Table(vector<Joueur> Players_list,Equipe team1,Equipe team2)
 {	
-	T1=team1;
-	T2=team2;
+	Equipe T1=team1;
+	Equipe T2=team2;
 	Joueurs = Players_list;
 	
 	ifstream sortie("../Belote.txt");		//Base de donne contenant les cartes du jeu
@@ -18,10 +17,10 @@ Table::Table(vector<Joueur> Players_list,Equipe team1,Equipe team2)
 										//pour stocker les informations sortante
 										//de la base de donnee
 										
-			sortie >> temp.couleur;
-			sortie >> temp.valeur;
-			sortie >> temp.val_atout;
-			sortie >> temp.val_hors_atout;
+			sortie >> temp.getCouleur();
+			sortie >> temp.getValeur();
+			sortie >> temp.getVal_atout();
+			sortie >> temp.getVal_hors_atout();
 			AllCards.push_back(temp);
 		}
 	}
@@ -35,12 +34,8 @@ Table::Table(vector<Joueur> Players_list,Equipe team1,Equipe team2)
 vector<Carte>& Table::getAllCards() {		//Accesseur Attribut AllCards
 	return AllCards;
 }
-vector<Carte>& Table::getJoueurs() {			//Accesseur Attribut Joueurs
+vector<Joueur>& Table::getJoueurs() {			//Accesseur Attribut Joueurs
 	return Joueurs;
-}
-
-void Table::setAllPacket(i) {
-	all_carte.erase(0)
 }
 
 
@@ -60,11 +55,11 @@ void Table::melange()						//Melange des cartes du vecteur AllCards
 	int b;
 	for (int a = 0;a < 32;a++)
 	{
-		carte C;
+		Carte C;
 		b = rand() % 32;
-		C = all_carte[a];
-		all_carte[a] = all_carte[b];
-		all_carte[b] = C;
+		C = AllCards[a];
+		AllCards[a] = AllCards[b];
+		AllCards[b] = C;
 	}
 
 }

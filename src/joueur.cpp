@@ -2,6 +2,8 @@
 #include <iostream>
 #include "Paquet_cartes.h"
 
+Joueur::Joueur(){}
+
 Joueur::Joueur(string name,int c)
 {
 	Nom=name;
