@@ -1,81 +1,113 @@
-#include "Carte.h"
+#include "../include/Carte.h"
 #include <iostream>
 #include <stdio.h>
-#include "valeur.h"
-#include "couleur.h"
 #include <string>
 using namespace std;
-Carte::Carte()
+Carte::Carte(){
+    valeur = "Out";
+	couleur = "Out";
+    val_atout = -2;
+    val_hors_atout =-2;
+}
+Carte::Carte(string Val, string Col,int Vatout,int VHatout)
 {
-    //ctor
+	valeur = Val;
+	couleur = Col;
+    val_atout = Vatout;
+    val_hors_atout =Vatout;
+}
+Carte::Carte(Carte* C){
+    cout<<"Affecting "<<C->getValeur()<<endl;
+    valeur = C->getValeur();
+	couleur = C->getCouleur();
+    val_atout = C->getVal_atout();
+    val_hors_atout = C->getVal_hors_atout();
+
 }
 
-Carte::~Carte()
-{
-    //dtor
-}
-
-Carte::Carte(string v, string c)
-{
-	valeur = v;
-	couleur = c;
-}
-
-string& Carte:: getCouleur()
+string Carte::getCouleur()
 {
 	return couleur;
 }
 
 
-string& Carte:: getValeur()
+string Carte::getValeur()
+{
+    return valeur;
+}
+string& Carte::setCouleur()
+{
+	return couleur;
+}
+
+
+string& Carte:: setValeur()
 {
     return valeur;
 }
 
-bool& Carte::getAtout(){
+bool Carte::getAtout(){
+    return atout;
+}
+bool& Carte::setAtout(){
     return atout;
 }
 	
 
-int& Carte::getVal_atout(){
+int Carte::getVal_atout(){
     return val_atout;
 }
-int& Carte::getVal_hors_atout(){
+int& Carte::setVal_atout(){
+    return val_atout;
+}
+int Carte::getVal_hors_atout(){
+    return val_hors_atout;
+}
+int& Carte::setVal_hors_atout(){
     return val_hors_atout;
 }
 
-int Carte:: compare (Carte obj,string at) 
+void Carte::operator=(Carte C){
+    cout<<"Affecting "<<C.getValeur()<<endl;
+    valeur = C.getValeur();
+	couleur = C.getCouleur();
+    val_atout = C.getVal_atout();
+    val_hors_atout = C.getVal_hors_atout();
+
+}
+int Carte:: compare (Carte obj,string atout) 
 {/* fonction qui fait la comparaison entre deux carte selon l'atout ou non atout
     retourne 0 s'ils sont egaux , 1 si la carte en main est superieur a celle sur la table
     sinon -1 si la carte sur table est superieur a la carte en main*/
 
     
-    if (couleur == at){
-        if(obj.getCouleur()==at){
-            int v=val_atout-obj.getVal_atout();
-            if (v==0) return 0;
-            else if (v>0) return 1;
+    if (couleur == atout){
+        if(obj.getCouleur()==atout){
+            int diff=val_atout-obj.getVal_atout();
+            if (diff==0) return 0;
+            else if (diff>0) return 1;
             else return -1;
         }
-        else if (obj.getCouleur() != at){
-            int v=val_atout-obj.getVal_hors_atout();
-            if (v==0) return 0;
-            else if (v>0) return 1;
-            else return -1;
-        }
-    }
-    else if (couleur != at) {
-        if (obj.getCouleur()==at){
-            int v=val_hors_atout-obj.getVal_atout();
-            if (v==0) return 0;
-            else if (v>0) return 1;
-            else return -1;
-        }
-        else if (obj.getCouleur() != at){
-            int v=val_hors_atout-obj.getVal_hors_atout();
-            if (v==0) return 0;
-            else if (v>0) return 1;
+        else if (obj.getCouleur() != atout){
+            int diff=val_atout-obj.getVal_hors_atout();
+            if (diff==0) return 0;
+            else if (diff>0) return 1;
             else return -1;
         }
     }
+    else if (couleur != atout) {
+        if (obj.getCouleur()==atout){
+            int diff=val_hors_atout-obj.getVal_atout();
+            if (diff==0) return 0;
+            else if (diff>0) return 1;
+            else return -1;
+        }
+        else if (obj.getCouleur() != atout){
+            int diff=val_hors_atout-obj.getVal_hors_atout();
+            if (diff==0) return 0;
+            else if (diff>0) return 1;
+            else return -1;
+        }
+    }
+    return -1;
 }

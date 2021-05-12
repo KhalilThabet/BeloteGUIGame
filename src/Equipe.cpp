@@ -1,5 +1,4 @@
-#include "Equipe.h"
-#include "Joueur.h"
+#include "../include/Equipe.h"
 Equipe::Equipe(){
     team={};
 }
@@ -9,21 +8,17 @@ Equipe::Equipe(Joueur& J1,Joueur& J2)
     team.push_back(J2);
 }
 
-Equipe::~Equipe()
-{
-    //dtor
-}
-int& Equipe::getScore() {
+int Equipe::getScore() {
     return score;
 }
 
-void Equipe::setatout(int a =0)
+int& Equipe::setatout()
 {
-    atout=a;
+    return atout;
 }
-
-
-int& Equipe::getScore()
-{
-    return score;
+void Equipe::afficheTeam(){
+    cout<<"Affichage de l'equipe\n";
+    for (int i=0;i<team.size();i++){
+        cout<<team[i].getNom()<<" "<<team[i].getRang()<<"\n";
+    }
 }

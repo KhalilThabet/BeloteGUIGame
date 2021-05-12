@@ -14,8 +14,10 @@ class Paquet_cartes
     public:
             Paquet_cartes();
             Paquet_cartes(vector<Carte>&);      //Creation de l'objet paquet de cartes
-            ~Paquet_cartes();                   //Destructeur du paquet de cartes
-            vector<Carte>& getPaquet();         //Accesseur a l'aatribut Paquet
+            // ~Paquet_cartes();                   //Destructeur du paquet de cartes
+            void operator=(Paquet_cartes);
+
+            vector<Carte> getPaquet();         //Accesseur a l'aatribut Paquet
             void setPaquet(vector<Carte>&);     //Mutateur de l'attribut Paquet
 
 };

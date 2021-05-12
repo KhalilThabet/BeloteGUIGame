@@ -1,4 +1,0 @@
-Pique 7 0 0 Pique 8 0 0 Pique 9 14 0 Pique 10 10 10 Pique Dame 3 3 Pique Valet 20 2 Pique Roi 4 4
-Coeur 7 0 0 Coeur 8 0 0 Coeur 9 14 0 Coeur 10 10 10 Coeur Dame 3 3 Coeur Valet 20 2 Coeur Roi 4 4
-Carreau 7 0 0 Carreau 8 0 0 Carreau 9 14 0 Carreau 10 10 10 Carreau Dame 3 3 Carreau Valet 20 2 Carreau Roi 4 4
-trefle 7 0 0 trefle 8 0 0 trefle 9 14 0 trefle 10 10 10 trefle Dame 3 3 trefle Valet 20 2 trefle Roi 4 4

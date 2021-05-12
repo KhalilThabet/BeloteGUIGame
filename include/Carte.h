@@ -1,8 +1,7 @@
 #ifndef CARTE_H_
 #define CARTE_H_
-#include "Couleur.h"
-#include "Valeur.h"
-
+#include<string>
+using namespace std;
 
 class Carte 
 //Classe qui definit les proprietes caracteristique de chaque carte durant le jeu
@@ -17,18 +16,28 @@ class Carte
 
 public:
 
-    Carte();                             //Constructeur par default
-    Carte(string val,string coul);      //Constructeur avec parametres
-    ~Carte();
+    Carte();
+    Carte(string,string,int,int);      //Constructeur avec parametres
+    Carte(Carte*);
 
-	string& getCouleur();                //retourne l'attribut couleur
-	string& getValeur();                  //retourne l'attribut valeur
-    bool& getAtout();                    //retourne l'attribut booleen atout
-    int& getVal_atout();                  //retourne la valeur de la carte en atout
-    int& getVal_hors_atout();             //retourne la valeur de la carte en hors atout
+	string getCouleur();                //retourne l'attribut couleur
+	string& setCouleur();  
+
+    string getValeur(); //retourne l'attribut valeur
+    string& setValeur() ;             
+
+    bool getAtout();                    //retourne l'attribut booleen atout
+    bool& setAtout();
+
+    int getVal_atout();                  //retourne la valeur de la carte en atout
+    int& setVal_atout();
+
+    int getVal_hors_atout();             //retourne la valeur de la carte en hors atout
+    int& setVal_hors_atout();
+    void operator=(Carte C);
 	
 	
-	int compare (Carte obj ,string at); //Compare entre deux cartes
+	int compare (Carte,string); //Compare entre deux cartes //atout=couleur
 };
 
 #endif
