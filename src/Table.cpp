@@ -1,5 +1,4 @@
 #include "../include/Table.h"
-#include "joueur.cpp"
 #include <fstream>
 Table::Table(vector<Joueur> Players_list,Equipe team1,Equipe team2)
 {	

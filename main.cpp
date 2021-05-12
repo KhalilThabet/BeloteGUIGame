@@ -1,6 +1,5 @@
-#include <iostream>
-#include  "./src/Functions.cpp"
-// #include "src/joueur.cpp"
+// #include  "./src/Functions.cpp"
+#include "./include/J.h"
 
 using namespace std;
 
@@ -20,7 +19,9 @@ int main()
     }
     for (int i=0;i<4;i++){
         cout<<Players_list[i].getNom()<<" ";
-    }}
+    }
+    return 0;
+}
     // for (int i=0;i<4;i++){
     //     cout<<Players_list[i].getRang()<<" ";
     // }
