@@ -89,6 +89,9 @@ Carte Table::compareTableCards(string atout){
 	}
 	return Highest_Card;
 }
-vector<Carte>& Table::getCardsOnTable(){
+vector<Carte> Table::getCardsOnTable(){
+	return CardsOnTable;
+}
+vector<Carte>& Table::setCardsOnTable(){
 	return CardsOnTable;
 }

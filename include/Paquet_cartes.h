@@ -16,7 +16,7 @@ class Paquet_cartes
             void operator=(Paquet_cartes);
 
             vector<Carte> getPaquet();         //Accesseur a l'aatribut Paquet
-            void setPaquet(vector<Carte>&);     //Mutateur de l'attribut Paquet
+            vector<Carte>& setPaquet();     //Mutateur de l'attribut Paquet
 
 };
 

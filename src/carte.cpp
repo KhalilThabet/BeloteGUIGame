@@ -1,8 +1,4 @@
 #include "../include/Carte.h"
-#include <iostream>
-#include <stdio.h>
-#include <string>
-using namespace std;
 Carte::Carte(){
     valeur = "Out";
 	couleur = "Out";
@@ -74,6 +70,12 @@ void Carte::operator=(Carte C){
     val_atout = C.getVal_atout();
     val_hors_atout = C.getVal_hors_atout();
 
+}
+bool Carte::operator==(Carte Card){
+    if (Card.getCouleur()==couleur && Card.getValeur()==valeur && Card.getAtout()==atout){
+        return true;
+    }
+    return false;
 }
 int Carte:: compare (Carte obj,string atout) 
 {/* fonction qui fait la comparaison entre deux carte selon l'atout ou non atout

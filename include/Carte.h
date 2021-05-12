@@ -34,8 +34,8 @@ public:
 
     int getVal_hors_atout();             //retourne la valeur de la carte en hors atout
     int& setVal_hors_atout();
-    void operator=(Carte C);
-	
+    void operator=(Carte);
+	bool operator==(Carte);
 	
 	int compare (Carte,string); //Compare entre deux cartes //atout=couleur
 };

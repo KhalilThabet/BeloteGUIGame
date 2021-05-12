@@ -1,9 +1,6 @@
 #ifndef FUNCTION_H
 #define FUNCTION_H
 #include "Table.h"
-#include "Equipe.h"
-#include "Joueur.h"
-#include "Carte.h"
 
 void distribute(Table&,int, ...);//fonction qui distribue les cartes
 

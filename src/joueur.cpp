@@ -58,7 +58,16 @@ void Joueur::operator=(Joueur cop)
 // }
 
 
-// void Joueur::sortir_carte(Table& T,Carte carte_choisi)
-// {
-// 	T.getCardsOnTable().push_back(carte_choisi);
-// }
+void Joueur::sortir_carte(Table& T,Carte ChosenCard)
+{
+    vector<Carte> Temp=this->set_player_paquet().setPaquet();
+    vector<Carte>::iterator itr,storePosition;
+    for(itr=Temp.begin();itr!=Temp.end();itr++){
+        if ((*itr)==ChosenCard){
+            storePosition=itr;
+            break;
+        }
+    }
+    Temp.erase(storePosition);
+	T.setCardsOnTable().push_back(ChosenCard);
+}

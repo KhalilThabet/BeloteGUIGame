@@ -29,7 +29,8 @@ public:
 
     Equipe getT2();                         //Accesseur Attribut T2
     Equipe& setT2();
-    vector<Carte>& getCardsOnTable();
+    vector<Carte> getCardsOnTable();
+    vector<Carte>& setCardsOnTable();
     void melange();                  //Melange des cartes du vecteur AllCards
     Carte compareTableCards(string);
 
