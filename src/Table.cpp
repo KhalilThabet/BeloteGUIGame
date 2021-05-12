@@ -6,7 +6,7 @@ Table::Table(vector<Joueur> Players_list,Equipe team1,Equipe team2)
 	Equipe T2=team2;
 	Joueurs = Players_list;
 	
-	ifstream sortie("Belote.txt");		//Base de donne contenant les cartes du jeu
+	ifstream sortie("C:/Users/Khali/OneDrive/Bureau/SchoolProject/src/Belote.txt");		//Base de donne contenant les cartes du jeu
 	if (sortie)
 	{
 		for (int i = 0;i < 32;i++)
@@ -64,18 +64,15 @@ Equipe& Table::setT2()						//Accesseur Attribut T2
 
 void Table::melange()						//Melange des cartes du vecteur AllCards
 {
-	cout<<"Entering Melange"<<endl;
 	int b;
 	for (int a = 0;a < 32;a++)
 	{
 		b = rand() % 32;
-		cout << " B : "<<b<<endl;
-		Carte C = AllCards[a];
-		cout<<C.getValeur()<<" "<<C.getCouleur()<<endl;
+		Carte C ;
+		C = AllCards[a];
 		AllCards[a] = AllCards[b];
 		AllCards[b] = C;
 	}
-	cout<<"Exiting melange\n";
 
 }
 Carte Table::compareTableCards(string atout){

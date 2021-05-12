@@ -67,3 +67,7 @@ void Joueur::sortir_carte(vector<Carte>& CardsOnTable,Carte ChosenCard)
     Temp.erase(storePosition);
 	CardsOnTable.push_back(ChosenCard);
 }
+function(){
+    sortir_carte();
+    
+}

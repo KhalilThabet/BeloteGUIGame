@@ -6,6 +6,7 @@ using namespace std;
 class Carte 
 //Classe qui definit les proprietes caracteristique de chaque carte durant le jeu
 {
+    int id;
 	string couleur;                  //types possibles pour une carte 
 	string valeur;                   //valeurs possibles pour une carte
     bool atout = 0;                  //0 si couleur==atout ,sinon 1
