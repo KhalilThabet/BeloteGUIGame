@@ -62,11 +62,19 @@ int Carte::getVal_hors_atout(){
 int& Carte::setVal_hors_atout(){
     return val_hors_atout;
 }
+int Carte::getAcces(){
+    return acces;
+}
+int& Carte::setAcces(){
+    return acces;
+}
 
 void Carte::operator=(Carte C){
     cout<<"Affecting "<<C.getValeur()<<endl;
     valeur = C.getValeur();
 	couleur = C.getCouleur();
+    atout=C.getAtout();
+    acces=C.getAcces();
     val_atout = C.getVal_atout();
     val_hors_atout = C.getVal_hors_atout();
 

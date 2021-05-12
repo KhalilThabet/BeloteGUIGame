@@ -1,8 +1,6 @@
 #include <iostream>
-#include "./src/Joueur.cpp"
-#include "./src/Equipe.cpp"
-#include "./src/Table.cpp"
-#include "./src/Functions.cpp"
+#include  "./src/Functions.cpp"
+// #include "src/joueur.cpp"
 
 using namespace std;
 
@@ -22,7 +20,7 @@ int main()
     }
     for (int i=0;i<4;i++){
         cout<<Players_list[i].getNom()<<" ";
-    }
+    }}
     // for (int i=0;i<4;i++){
     //     cout<<Players_list[i].getRang()<<" ";
     // }
@@ -36,36 +34,36 @@ int main()
     //     else cout<<"Empty for the Player"<<i<<"\n";
     // }
 
-    int a;
-    a = rand() % 4;                                 //un entier entre 0 et 4
-    cout<<"\n RandomValue a :"<<a<<endl;
-    Joueur temp(Players_list[a]);  //construcateur de recopie                    //Creation d'un objet temporaire joueur
-    Players_list[a] = Players_list[(a + 2) % 4];//operator=       //Echanger deux joueurs dans le vecteur Players_list aleatoirement
-    Players_list[(a + 2) % 4] = temp;                  //Juste un petit melange d'equipe
-    for (int i=0;i<4;i++){
-        cout<<Players_list[i].getNom()<<" ";
-    }
-    Equipe T1(Players_list[3], Players_list[1]), T2(Players_list[2],Players_list[0]); //Affectation des joueurs melanger dans le vecteur a des equipes
-    T1.afficheTeam();
-    T2.afficheTeam();
-    cout<<"\nTeam 1 Score :"<<T1.getScore()<<" Team 2 : "<<T2.getScore();
+    // int a;
+    // a = rand() % 4;                                 //un entier entre 0 et 4
+    // cout<<"\n RandomValue a :"<<a<<endl;
+    // Joueur temp(Players_list[a]);  //construcateur de recopie                    //Creation d'un objet temporaire joueur
+    // Players_list[a] = Players_list[(a + 2) % 4];//operator=       //Echanger deux joueurs dans le vecteur Players_list aleatoirement
+    // Players_list[(a + 2) % 4] = temp;                  //Juste un petit melange d'equipe
+    // for (int i=0;i<4;i++){
+    //     cout<<Players_list[i].getNom()<<" ";
+    // }
+    // Equipe T1(Players_list[3], Players_list[1]), T2(Players_list[2],Players_list[0]); //Affectation des joueurs melanger dans le vecteur a des equipes
+    // T1.afficheTeam();
+    // T2.afficheTeam();
+    // cout<<"\nTeam 1 Score :"<<T1.getScore()<<" Team 2 : "<<T2.getScore();
 
-    while (1){
-        while (T1.getScore() < 501 || T2.getScore() < 501) {
+    // while (1){
+    //     while (T1.getScore() < 501 || T2.getScore() < 501) {
 
-            Table T(Players_list,T1,T2);    //Creation d'un objet table qui fera de reference entre toutes les classes duant le jeu
-            cout<<T.getAllCards().size();
-            int b;
-            int i=0;
-            do{
-                T.melange();
-                distribute(T,5);            //distribue 5 cartes a chacun des joueurs
-                b=retour_indice(T);         //Proposer une carte sur table pour tous les joueurs et retourne lindice de celui qui la saisie
-            }while (b==-1);
-            distribute(T,3,21,b); 
-            break;
-            }
-            break;}}          //Distribue les reste du paquet aux joueurs commencant par le joueur consenttnt a prendre la carte sur la table
+    //         Table T(Players_list,T1,T2);    //Creation d'un objet table qui fera de reference entre toutes les classes duant le jeu
+    //         cout<<T.getAllCards().size();
+    //         int b;
+    //         int i=0;
+    //         do{
+    //             T.melange();
+    //             distribute(T,5);            //distribue 5 cartes a chacun des joueurs
+    //             b=retour_indice(T);         //Proposer une carte sur table pour tous les joueurs et retourne lindice de celui qui la saisie
+    //         }while (b==-1);
+    //         distribute(T,3,21,b); 
+    //         break;
+    //         }
+    //         break;}}          //Distribue les reste du paquet aux joueurs commencant par le joueur consenttnt a prendre la carte sur la table
             // for(int i=0;i<8;i++){
             //     for(int j=0;j<4;j++){
             //         Players_list[j].cartes_possibles();//Affiche les cartes possibles dans la main du joueur

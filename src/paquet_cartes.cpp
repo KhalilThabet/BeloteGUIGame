@@ -1,7 +1,4 @@
 #include "../include/Paquet_cartes.h"
-#include "Carte.cpp"
-#include <stdio.h>
-#include <stdlib.h>
 Paquet_cartes::Paquet_cartes(){
     Paquet ={};
 }
@@ -20,8 +17,8 @@ vector<Carte> Paquet_cartes::getPaquet() {
 }
 
 
-void Paquet_cartes::setPaquet(vector<Carte>& A) {
-    Paquet = A;
+vector<Carte>& Paquet_cartes::setPaquet() {
+    return Paquet;
 }
 
 void Paquet_cartes::operator=(Paquet_cartes Cartes){

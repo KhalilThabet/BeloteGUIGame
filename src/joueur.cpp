@@ -1,8 +1,4 @@
 #include "../include/Joueur.h"
-#include "../include/Table.h"
-#include "Paquet_cartes.cpp"
-#include <iostream>
-
 Joueur::Joueur(){}
 
 Joueur::Joueur(string name,int Rg)
@@ -58,7 +54,7 @@ void Joueur::operator=(Joueur cop)
 // }
 
 
-void Joueur::sortir_carte(Table& T,Carte ChosenCard)
+void Joueur::sortir_carte(vector<Carte>& CardsOnTable,Carte ChosenCard)
 {
     vector<Carte> Temp=this->set_player_paquet().setPaquet();
     vector<Carte>::iterator itr,storePosition;
@@ -69,5 +65,5 @@ void Joueur::sortir_carte(Table& T,Carte ChosenCard)
         }
     }
     Temp.erase(storePosition);
-	T.setCardsOnTable().push_back(ChosenCard);
+	CardsOnTable.push_back(ChosenCard);
 }

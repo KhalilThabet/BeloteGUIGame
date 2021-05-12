@@ -28,7 +28,7 @@ public:
 
 	// vector<Carte> cartes_possible(Table&,string);// retourne un vecteur contenant tout les cartes possible à sortir
 	// virtual Carte choisir_carte()=0; // /retourne carte aprés selection et le supprime du paquet
-	void sortir_carte(Table&,Carte);//affecte la carte choisis vers table_cards
+	void sortir_carte(vector<Carte>&,Carte);//affecte la carte choisis vers table_cards
 };
 
 

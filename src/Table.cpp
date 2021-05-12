@@ -1,14 +1,13 @@
 #include "../include/Table.h"
+#include "joueur.cpp"
 #include <fstream>
-#include <iostream>
-#include <stdlib.h>
 Table::Table(vector<Joueur> Players_list,Equipe team1,Equipe team2)
 {	
 	Equipe T1=team1;
 	Equipe T2=team2;
 	Joueurs = Players_list;
 	
-	ifstream sortie("C:/Users/Khali/OneDrive/Bureau/SchoolProject/src/Belote.txt");		//Base de donne contenant les cartes du jeu
+	ifstream sortie("Belote.txt");		//Base de donne contenant les cartes du jeu
 	if (sortie)
 	{
 		for (int i = 0;i < 32;i++)

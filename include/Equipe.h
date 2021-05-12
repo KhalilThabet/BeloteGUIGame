@@ -1,6 +1,6 @@
 #ifndef EQUIPE_H
 #define EQUIPE_H
-#include "../include/Joueur.h"
+#include "Joueur.h"
 
 
 class Equipe

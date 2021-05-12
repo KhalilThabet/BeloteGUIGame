@@ -9,7 +9,7 @@ class Carte
 	string couleur;                  //types possibles pour une carte 
 	string valeur;                   //valeurs possibles pour une carte
     bool atout = 0;                  //0 si couleur==atout ,sinon 1
-    bool accee = 1;                  //1 si le joueur peut sortir la carte(disponible) ,0 sinon
+    int acces = 1;                  //1 si le joueur peut sortir la carte(disponible) ,0 sinon
     int val_atout;                   // valeur d'une carte en atout
 	int val_hors_atout;              // valeur d'une carte hors atout
 
@@ -28,6 +28,9 @@ public:
 
     bool getAtout();                    //retourne l'attribut booleen atout
     bool& setAtout();
+
+    int getAcces();
+    int& setAcces();
 
     int getVal_atout();                  //retourne la valeur de la carte en atout
     int& setVal_atout();
