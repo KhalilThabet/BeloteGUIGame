@@ -1,8 +1,6 @@
 #ifndef PAQUET_CARTES_H_
 #define PAQUET_CARTES_H_
 #include "Carte.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include <vector>
 #include <iostream>
 using namespace std;

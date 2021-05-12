@@ -1,9 +1,6 @@
 #ifndef JOUEUR_H_
 #define JOUEUR_H_
-#include <vector>
 #include "Paquet_cartes.h"
-#include <string>
-
 
 using namespace std ;
 class Joueur

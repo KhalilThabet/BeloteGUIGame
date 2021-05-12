@@ -1,8 +1,5 @@
 #ifndef TABLE_H
 #define TABLE_H
-#include <vector> 
-#include "Carte.h"
-#include "Joueur.h"
 #include "Equipe.h"
 
 

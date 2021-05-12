@@ -1,7 +1,7 @@
 #ifndef EQUIPE_H
 #define EQUIPE_H
-#include <vector>
 #include "../include/Joueur.h"
+
 
 class Equipe
 //classe dediee aux 2 joueurs de chaque equipe, calcule le score en temps reel et verify ses decisions
