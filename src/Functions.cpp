@@ -49,12 +49,15 @@ int retour_indice(Table& T){
 			for (int j=0;j<32;j++)
 			{
 				if ((T.getAllCards()[j]).getCouleur() == (T.getAllCards()[20]).getCouleur())
-					(T.setAllCards()[j]).setAtout()=1;
+					(T.setAllCards()[j]).setAtout() = 1;
 			}
-			if (i==3 || i==1)
+			if (i==3 || i==1){
 				(T.setT1()).setatout()=1;
+			}
 			
-			else (T.setT2()).setatout()=1;
+			else {
+				(T.setT2()).setatout()=1;
+			}
 
 			return i;
 		
@@ -70,7 +73,7 @@ void display_cards(Joueur J){
 	vector<Carte> V=J.get_player_paquet().getPaquet();
 	cout<<"V size :"<<V.size()<<"\n";
 	for(int i=0;i<V.size();i++){
-		cout<<V[i].getCouleur()<<" "<<V[i].getValeur()<<"\n";
+		cout<<V[i].getCouleur()<<" "<<V[i].getValeur()<<" "<<V[i].getAtout()<<"\n";
 	}
 	cout<<"\n\n";
 }

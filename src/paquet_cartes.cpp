@@ -8,10 +8,6 @@ Paquet_cartes::Paquet_cartes(vector<Carte>& receivedCards)
 }
 
 
-// Paquet_cartes::~Paquet_cartes(){
-//     delete [] &Paquet;
-// }
-
 vector<Carte> Paquet_cartes::getPaquet() {
     return Paquet;
 }
