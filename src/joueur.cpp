@@ -46,12 +46,27 @@ void Joueur::operator=(Joueur cop)
 // 	cout<<"Changement en cours"<<endl;
 // 	cout<<"Nom des joueurs : "<<J.getNom()<<" "<<J1.getNom()<<" "<<J2.getNom()<<endl;}
 
-// vector<Carte> Joueur::cartes_possible(Table& T,string atout)
-// {	
-// 	vector<Carte> cartes;
-// 	//Carte plus_grande_carte =T.compareTableCards(atout); //la plus grande carte sur table
+vector<Carte> Joueur::cartes_possible(Table& T,string atout)
+{	
+	vector<Carte> cartes;
+    if (T.getCardsOnTable().size()==0){
+        return Paquet.getPaquet();
+    }
+    else{
+        for(int i=0;i<Paquet.getPaquet().size();i++)
+        {
+            if (Paquet.getPaquet()[i].getCouleur()==T.getCardsOnTable()[0].getCouleur() || Paquet.getPaquet()[i].getCouleur()==atout){
+                cartes.push_back(Paquet.getPaquet()[i]);
+            }
+        }
+        if (cartes.size()==0){
+            return Paquet.getPaquet();
+        }
+        return cartes;
+        
+    }
 	
-// }
+}
 
 
 void Joueur::sortir_carte(vector<Carte>& CardsOnTable,Carte ChosenCard)
