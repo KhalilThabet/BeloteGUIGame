@@ -13,7 +13,6 @@ Carte::Carte(string Val, string Col,int Vatout,int VHatout)
     val_hors_atout =Vatout;
 }
 Carte::Carte(Carte* C){
-    cout<<"Affecting "<<C->getValeur()<<endl;
     valeur = C->getValeur();
 	couleur = C->getCouleur();
     val_atout = C->getVal_atout();
@@ -70,7 +69,6 @@ int& Carte::setAcces(){
 }
 
 void Carte::operator=(Carte C){
-    cout<<"Affecting "<<C.getValeur()<<endl;
     valeur = C.getValeur();
 	couleur = C.getCouleur();
     atout=C.getAtout();

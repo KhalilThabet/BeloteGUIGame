@@ -1,6 +1,6 @@
 #include "../include/Table.h"
 #include <fstream>
-Table::Table(vector<Joueur> Players_list,Equipe team1,Equipe team2)
+Table::Table(vector<Joueur>& Players_list,Equipe& team1,Equipe& team2)
 {	
 	Equipe T1=team1;
 	Equipe T2=team2;

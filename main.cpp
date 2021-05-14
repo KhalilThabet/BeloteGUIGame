@@ -1,4 +1,4 @@
-#include  "./src/Functions.cpp"
+#include "./src/Functions.cpp"
 #include "./include/Joueur.h"
 #include "./src/joueur.cpp"
 #include "./src/carte.cpp"
@@ -11,9 +11,9 @@ using namespace std;
 int main()
 {
     string nom;
-    cout<<"Nom created"<<endl;
+    cout<<"Object Nom created"<<endl;
     vector<Joueur> Players_list;
-    cout<<"Joueur Created"<<endl;
+    cout<<"Object Joueur Created"<<endl;
     for (int i = 0;i < 4;i++)
     {   cout<<"i : "<<i<<endl;
         cout << "Saisir le nom d'un joueur" << i + 1 << ":\n";
@@ -52,10 +52,14 @@ int main()
             int i=0;
             do{
                 T.melange();
-                distribute(T,5);            //distribue 5 cartes a chacun des joueurs
+                distribute(T,5,21);            //distribue 5 cartes a chacun des joueurs
                 b=retour_indice(T);         //Proposer une carte sur table pour tous les joueurs et retourne lindice de celui qui la saisie
             }while (b==-1);
-            distribute(T,3,21,b); 
+            distribute(T,3,33,21,b); 
+            cout<<"********************\n";
+            for (int i=0;i<T.getJoueurs().size();i++){
+                display_cards(T.getJoueurs()[i]);
+            }
             break;
             }
             break;}

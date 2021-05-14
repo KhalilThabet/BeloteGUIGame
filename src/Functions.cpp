@@ -3,24 +3,20 @@
 #include <cstdio>
 using namespace std;
 
-void distribute(Table& T,int NumberOfCardToDistribute,int StartingCardPosition=1, int IndexOfFirstPlayer=0)
+void distribute(Table& T,int NumberOfCardToDistribute,int ending,int StartingCardPosition=1, int IndexOfFirstPlayer=0)
 {	//function cards distribution
 	 
  	int j = IndexOfFirstPlayer ;		 //Designe le premier joueur a etres servi
- 	vector<Carte> SendingPacket = {};	 //Vecteur qui sert de conteneur temporaire au paquet des joueurs
-	cout<<"\n"<<NumberOfCardToDistribute<<" "<<StartingCardPosition<<" "<<IndexOfFirstPlayer<<endl;
-	if (SendingPacket.empty()) cout <<"Vide"<<endl;
-
- 	for (int i = StartingCardPosition ; i < 33 ; i++) {		//Distribution de cartes a partir de l'indice donnee
- 		if (i % NumberOfCardToDistribute == 0) 				//Arrivant au nombre desirer de carte par joueur
+ 	vector<Carte> SendingPacket = {};	 //Vecteur qui sert de conteneur temporaire au paquet des joueur
+ 	for (int i = StartingCardPosition ; i < ending ; i++) {		//Distribution de cartes a partir de l'indice donnee
+ 		if ((i-StartingCardPosition+1) % NumberOfCardToDistribute == 0) 				//Arrivant au nombre desirer de carte par joueur
 															//Rempli les attributs paquet du joueur d'indice j
 		{   
-            cout<<" Card number : "<<i<<endl;
 			SendingPacket.push_back(T.getAllCards()[i-1]);
-            for(int k=0;k<SendingPacket.size();k++){
-                cout<<SendingPacket[k].getValeur()<<endl;
-            }
-			((T.setJoueurs()[j]).set_player_paquet()).setPaquet()=SendingPacket;
+            // for(int k=0;k<SendingPacket.size();k++){
+            //     cout<<SendingPacket[k].getCouleur()<<" "<<SendingPacket[k].getValeur()<<endl;
+            // }
+			((T.setJoueurs()[j]).set_player_paquet()).setPaquet().insert(((T.setJoueurs()[j]).set_player_paquet()).setPaquet().end(),SendingPacket.begin(),SendingPacket.end());
 			SendingPacket.clear();
 			j += 1;
 			j = j % 4;
@@ -67,4 +63,14 @@ int retour_indice(Table& T){
 	}
 	return -1;
 	
+}
+
+void display_cards(Joueur J){
+	cout<<"displayCards\n";
+	vector<Carte> V=J.get_player_paquet().getPaquet();
+	cout<<"V size :"<<V.size()<<"\n";
+	for(int i=0;i<V.size();i++){
+		cout<<V[i].getCouleur()<<" "<<V[i].getValeur()<<"\n";
+	}
+	cout<<"\n\n";
 }

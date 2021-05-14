@@ -18,7 +18,7 @@ class Table
 
 public:
 
-    Table(vector<Joueur>,Equipe,Equipe);
+    Table(vector<Joueur>&,Equipe&,Equipe&);
 
     vector<Carte> getAllCards();            //Accesseur attribut AllCards
     vector<Carte>& setAllCards();
