@@ -68,9 +68,8 @@ int retour_indice(Table& T){
 	
 }
 
-void display_cards(Joueur J){
+void display_cards(vector<Carte> V){
 	cout<<"displayCards\n";
-	vector<Carte> V=J.get_player_paquet().getPaquet();
 	cout<<"V size :"<<V.size()<<"\n";
 	for(int i=0;i<V.size();i++){
 		cout<<V[i].getCouleur()<<" "<<V[i].getValeur()<<" "<<V[i].getAtout()<<"\n";

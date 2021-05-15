@@ -26,8 +26,8 @@ public:
 	
 	void operator=(Joueur); //surcharge de l'operateur d'affectation
 
-	vector<Carte> cartes_possible(Table&,string);// retourne un vecteur contenant tout les cartes possible à sortir
-	// virtual Carte choisir_carte()=0; // /retourne carte aprés selection et le supprime du paquet
+	vector<Carte> cartes_possible(vector<Carte>,string);// retourne un vecteur contenant tout les cartes possible à sortir
+	Carte choisir_carte(vector<Carte>&); // /retourne carte aprés selection et le supprime du paquet
 	void sortir_carte(vector<Carte>&,Carte);//affecte la carte choisis vers table_cards
 };
 

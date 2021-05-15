@@ -90,3 +90,6 @@ vector<Carte> Table::getCardsOnTable(){
 vector<Carte>& Table::setCardsOnTable(){
 	return CardsOnTable;
 }
+void Table::Score(){
+
+}

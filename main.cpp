@@ -44,7 +44,7 @@ int main()
 
 
     while (1){
-        while (T1.getScore() < 501 || T2.getScore() < 501) {
+        while (T1.getScore() < 200 && T2.getScore() < 200) {
 
             Table T(Players_list,T1,T2);    //Creation d'un objet table qui fera de reference entre toutes les classes duant le jeu
             cout<<T.getAllCards().size();
@@ -58,26 +58,24 @@ int main()
             distribute(T,3,33,21,b); 
             cout<<"********************\n";
             for (int i=0;i<T.getJoueurs().size();i++){
-                display_cards(T.getJoueurs()[i]);
+                display_cards(T.getJoueurs()[i].get_player_paquet().getPaquet());
+            }        
+            for(int i=0;i<8;i++){
+                for(int j=0;j<4;j++){
+                    vector<Carte> C=T.getJoueurs()[i].cartes_possible(T.getCardsOnTable(),"trefle");//Affiche les cartes possibles dans la main du joueur                    
+                    display_cards(C);
+                    T.getJoueurs()[i].sortir_carte(T.setCardsOnTable(),T.getJoueurs()[i].choisir_carte(C));
+                    //T.Score(); // Affecte les scores necessaires a chaque equipe(necessite de remplacer int& get score par un mutateur int& setScore)
+                    //necessite de creation d'un methode qui fait la comparaison entre les 4 cartes du vecteur CardsOnTable
+                }
+                display_cards(T.getCardsOnTable());
             }
-            break;
-            }
-            break;}
-}          //Distribue les reste du paquet aux joueurs commencant par le joueur consenttnt a prendre la carte sur la table
-            // for(int i=0;i<8;i++){
-            //     for(int j=0;j<4;j++){
-            //         Players_list[j].cartes_possibles();//Affiche les cartes possibles dans la main du joueur
-            //         Carte carte_choisit=Players_list[j].choisir_carte();//Donne au joueur de choisir une carte parmis les cartes possibles;//un appel a la methode carte methode est necessaire a cette methde
-            //         Players_list[j].sortir_carte(T,carte_choisit);
-            //         T.Score(); // Affecte les scores necessaires a chaque equipe(necessite de remplacer int& get score par un mutateur int& setScore)
-            //         //necessite de creation d'un methode qui fait la comparaison entre les 4 cartes du vecteur CardsOnTable
-            //     }
-            // }
+        }
 
-//         cout<<"Would you like to play another game?"<<endl;
-//         string y;
-//         cin>> y;
-//         if (y=="No") break;
-//         }
-//         break;
-// }
+        cout<<"Would you like to play another game?"<<endl;
+        string y;
+        cin>> y;
+        if (y=="No") break;
+    }
+    return 0;
+}

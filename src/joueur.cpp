@@ -1,4 +1,5 @@
 #include "../include/Joueur.h"
+
 Joueur::Joueur(){}
 
 Joueur::Joueur(string name,int Rg)
@@ -46,16 +47,16 @@ void Joueur::operator=(Joueur cop)
 // 	cout<<"Changement en cours"<<endl;
 // 	cout<<"Nom des joueurs : "<<J.getNom()<<" "<<J1.getNom()<<" "<<J2.getNom()<<endl;}
 
-vector<Carte> Joueur::cartes_possible(Table& T,string atout)
+vector<Carte> Joueur::cartes_possible(vector<Carte> CardsOnTable,string atout)
 {	
 	vector<Carte> cartes;
-    if (T.getCardsOnTable().size()==0){
+    if (CardsOnTable.size()==0){
         return Paquet.getPaquet();
     }
     else{
         for(int i=0;i<Paquet.getPaquet().size();i++)
         {
-            if (Paquet.getPaquet()[i].getCouleur()==T.getCardsOnTable()[0].getCouleur() || Paquet.getPaquet()[i].getCouleur()==atout){
+            if (Paquet.getPaquet()[i].getCouleur()==CardsOnTable[0].getCouleur() || Paquet.getPaquet()[i].getCouleur()==atout){
                 cartes.push_back(Paquet.getPaquet()[i]);
             }
         }
@@ -68,10 +69,15 @@ vector<Carte> Joueur::cartes_possible(Table& T,string atout)
 	
 }
 
+Carte Joueur::choisir_carte(vector<Carte>& cartes_possible){
+    cout<<"Choisir un numero entre 1 et "<<cartes_possible.size()<<endl;
+    int i;cin>>i;
+    return cartes_possible[i-1];
+}
 
 void Joueur::sortir_carte(vector<Carte>& CardsOnTable,Carte ChosenCard)
 {
-    vector<Carte> Temp=this->set_player_paquet().setPaquet();
+    vector<Carte> Temp=Paquet.setPaquet();
     vector<Carte>::iterator itr,storePosition;
     for(itr=Temp.begin();itr!=Temp.end();itr++){
         if ((*itr)==ChosenCard){
