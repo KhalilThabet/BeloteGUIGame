@@ -1,16 +1,12 @@
-#include "boardgame.h"
 #include "./src/Functions.cpp"
-#include "cardsAccess.cpp"
+#include "boardreload.h"
+//#include "./src/Functions.cpp"
+//void BoardReload::Rejouer(vector<Joueur>& J,QWidget* BG){
+//    //BoardGame B(J,BG);
+//}
 
-
-BoardGame::BoardGame(vector<Joueur>& J,QWidget* BG)
-{   /*static bool pa=true;
-    static bool pb=false;
-    static bool pc=false;
-    static bool pd=false;*/
-    auto up=UpperCards;
-    //auto s=sleep;
-
+BoardReload::BoardReload(vector<Joueur>& J,QWidget* BG)
+{
     QPushButton *Replay = new QPushButton("Rejouer");
     QPushButton *QuitButton = new QPushButton("Quit");
     QuitButton->setStyleSheet("background-color:white;");
@@ -28,7 +24,7 @@ BoardGame::BoardGame(vector<Joueur>& J,QWidget* BG)
     BG->setStyleSheet("QWidget#BoardGame {background:url('C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/GroundImageBigger') no-repeat center center fixed ;background-size:cover;}");
     layout->addWidget(Replay,13,0,Qt::AlignBottom);
     QObject::connect(QuitButton,&QPushButton::clicked,BG,[BG](){BG->close();});
-    //QObject::connect(Replay,&QPushButton::clicked,[s,BG](){BG->close();s(2);BG->show();});
+    QObject::connect(Replay,&QPushButton::clicked,[&](){BG->close();});
 
 
     label=new QLabel("");
@@ -78,11 +74,8 @@ BoardGame::BoardGame(vector<Joueur>& J,QWidget* BG)
 //BoardGame::HiddenLeftDeck.push_back(l);
                 layout->addWidget(l,i,0);
                 ClickableLabel* l1=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize'>");
-                QObject::connect(l,&ClickableLabel::clicked,[layout,l,l1](){layout->addWidget(l1,7,7);l->setText("");emit l1->Screen();});//if (pla==1)
-                QObject::connect(l1,&ClickableLabel::Screen,[=](){l1->setText(s);up(btn,layout,T);});
-                    //pla++;
-
-
+                QObject::connect(l,&ClickableLabel::clicked,[layout,l,l1](){layout->addWidget(l1,7,7);l->setText("");emit l1->Screen();});
+                QObject::connect(l1,&ClickableLabel::Screen,[l1,s](){l1->setText(s);});
 
             }
 
@@ -104,10 +97,8 @@ BoardGame::BoardGame(vector<Joueur>& J,QWidget* BG)
                 //HiddenUpperDeck.push_back(l);
                 layout->addWidget(l,0,i);
                 ClickableLabel* l1=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize'>");
-//                if (pb){
-                    QObject::connect(l,&ClickableLabel::clicked,[layout,l,l1](){layout->addWidget(l1,7,6);l->setText("");emit l1->Screen();});
-                    QObject::connect(l1,&ClickableLabel::Screen,[l1,s](){l1->setText(s);});
-//            }
+                QObject::connect(l,&ClickableLabel::clicked,[layout,l,l1](){layout->addWidget(l1,7,6);l->setText("");emit l1->Screen();});
+                QObject::connect(l1,&ClickableLabel::Screen,[l1,s](){l1->setText(s);});
                 QObject::connect(btn,&QPushButton::pressed,[l,s](){l->setText(s);});
                 QObject::connect(btn,&QPushButton::released,[l](){l->setText("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize'>");});
 
@@ -119,10 +110,8 @@ BoardGame::BoardGame(vector<Joueur>& J,QWidget* BG)
                 //HiddenLowerDeck.push_back(l);
                 layout->addWidget(l,14,i);
                 ClickableLabel* l1=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize.png'>");
-//             if (pc){
                 QObject::connect(l,&ClickableLabel::clicked,[layout,l,l1](){layout->addWidget(l1,7,8);l->setText("");emit l1->Screen();});
                 QObject::connect(l1,&ClickableLabel::Screen,[l1,s](){l1->setText(s);});
-//            }
             }
 
             for(int i=3;i<11;i++){
@@ -133,22 +122,22 @@ BoardGame::BoardGame(vector<Joueur>& J,QWidget* BG)
                 //HiddenRightDeck.push_back(l);
                 layout->addWidget(l,i,14);
                 ClickableLabel* l1=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize.png'>");
-//            if (pd){
                 QObject::connect(l,&ClickableLabel::clicked,[layout,l,l1](){layout->addWidget(l1,7,9);l->setText("");emit l1->Screen();});
                 QObject::connect(l1,&ClickableLabel::Screen,[l1,s](){l1->setText(s);});
-//            }
+
 
             }
+
+//    qDebug()<<HiddenLeftDeck.size();
+//    for(int i=0;i<4;i++){
+//        ClickableLabel* l=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize'>");
+//        layout->addWidget(l,7,6+i);
+//        QObject::connect(l,&ClickableLabel::clicked,[l](){l->setText("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/lower/roi_coeur'>");});
+
+//    }
 
     BG->setLayout(layout);
     BG->showFullScreen();
 
 }
 
-int BoardGame::getPlayerTour(){
-    return playerTour;
-}
-
-int& BoardGame::setPlayerTour(){
-    return playerTour;
-}

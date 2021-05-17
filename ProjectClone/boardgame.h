@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "./include/Table.h"
 #include <QLabel>
+#include <unistd.h>
 #include <QMouseEvent>
 #include "clickableqlabel.h"
 #include <QGridLayout>
@@ -17,10 +18,13 @@ class BoardGame
 {
 public:
     BoardGame(vector<Joueur>&,QWidget*);
+    int getPlayerTour();
+    int& setPlayerTour();
 
 private:
     QLabel* label;
     QLabel* label1;
+    int playerTour=1;
 
 };
 
