@@ -17,7 +17,8 @@ class Equipe
 public:
    Equipe();
 	Equipe(Joueur&,Joueur&);         //Constructeur d'equipe de deux joueurs
-	int getScore();                 //Accesseurs de l'attribut privee score
+	int getScore(); 
+   int& setScore();                //Accesseurs de l'attribut privee score
    int& setatout();            //Mutateur de l'attribut privee atout
    string afficheTeam(int k);
 

@@ -68,11 +68,17 @@ int& Carte::setAcces(){
     return acces;
 }
 
-string Carte::getAddress(){
-    return Address;
+string Carte::getAddress0(){
+    return AddressVertical;
 }
-string& Carte::setAddress(){
-    return Address;
+string& Carte::setAddress0(){
+    return AddressVertical;
+}
+string Carte::getAddress90(){
+    return AddressHorizontal;
+}
+string& Carte::setAddress90(){
+    return AddressHorizontal;
 }
 void Carte::operator=(Carte C){
     valeur = C.getValeur();

@@ -4,11 +4,14 @@
 #include <QWidget>
 #include "./include/Table.h"
 #include <QLabel>
+#include <QTimer>
+#include <QVector>
 #include <unistd.h>
 #include <QMouseEvent>
 #include "clickableqlabel.h"
 #include <QGridLayout>
 #include <QPushButton>
+#include <QEventLoop>
 #include <iostream>
 //#include "./src/Functions.cpp"
 //#include "./include/Joueur.h"
@@ -18,13 +21,53 @@ class BoardGame
 {
 public:
     BoardGame(vector<Joueur>&,QWidget*);
-    int getPlayerTour();
-    int& setPlayerTour();
+    int ShowLeftCards(QGridLayout*);
+    int ShowTopCards(QGridLayout*);
+    int ShowRightCards(QGridLayout*);
+    int ShowBotCards(QGridLayout*);
+
+    void HideLeftCards(QGridLayout*);
+    void HideTopCards(QGridLayout*);
+    void HideRightCards(QGridLayout*);
+    void HideBotCards(QGridLayout*);
+
+    void StoreTopCards(Table,QGridLayout*);
+    void StoreBotCards(Table,QGridLayout*);
+    void StoreRightCards(Table,QGridLayout*);
+    void StoreLeftCards(Table,QGridLayout*);
+
+    void disconnectLeft();
+    void disconnectRight();
+    void disconnectTop();
+    void disconnectBot();
+
+
+    // int getTopDeckSize();
+    // int getLeftDeckSize();
+    void run();
+
+
 
 private:
+
     QLabel* label;
     QLabel* label1;
-    int playerTour=1;
+
+    QVector<ClickableLabel*> TopHidden;
+    QVector<ClickableLabel*> TopDeck;
+
+    QVector<ClickableLabel*> BotHidden;
+    QVector<ClickableLabel*> BotDeck;
+
+    QVector<ClickableLabel*> LeftHidden;
+    QVector<ClickableLabel*> LeftDeck;
+
+    QVector<ClickableLabel*> RightHidden;
+    QVector<ClickableLabel*> RightDeck;
+
+    QVector<ClickableLabel*> CardsOnTable;
+     
+
 
 };
 

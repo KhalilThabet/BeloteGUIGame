@@ -67,11 +67,3 @@ int retour_indice(Table& T){
 	
 }
 
-void display_cards(vector<Carte> V){
-	cout<<"displayCards\n";
-	cout<<"V size :"<<V.size()<<"\n";
-	for(int i=0;i<V.size();i++){
-		cout<<V[i].getCouleur()<<" "<<V[i].getValeur()<<" "<<V[i].getAtout()<<"\n";
-	}
-	cout<<"\n\n";
-}

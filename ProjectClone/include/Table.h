@@ -13,7 +13,7 @@ class Table
     int nbr_pli = 8;                        //Nombre de pli durant une manche
     vector<Carte> AllCards;                 //Conteneur contenant toutes les cartes du jeu
     vector<Joueur> Joueurs;                 //Conteneur contenant les 4 joueurs qui sont en train de jouer
-    Equipe T1,T2;                           //Deux objets de classe equipe qui contiennent les deux equipes
+    Equipe T1,T2;                        //Deux objets de classe equipe qui contiennent les deux equipes
 
 
 public:
@@ -33,8 +33,9 @@ public:
     vector<Carte>& setCardsOnTable();
     void melange();                  //Melange des cartes du vecteur AllCards
     Carte compareTableCards(string);
-    void Score();
-
+    void Score(string,int);
+    int somme_score(string);
+    int joueur_gagnant(string,int);
         
 
 };

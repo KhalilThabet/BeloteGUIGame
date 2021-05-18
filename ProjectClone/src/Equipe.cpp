@@ -11,7 +11,9 @@ Equipe::Equipe(Joueur& J1,Joueur& J2)
 int Equipe::getScore() {
     return score;
 }
-
+int& Equipe::setScore(){
+    return score;
+}
 int& Equipe::setatout()
 {
     return atout;
