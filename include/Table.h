@@ -34,6 +34,8 @@ public:
     void melange();                  //Melange des cartes du vecteur AllCards
     Carte compareTableCards(string);
     void Score();
+    void displayAllCards();
+
 
         
 

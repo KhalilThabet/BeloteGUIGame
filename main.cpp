@@ -8,8 +8,10 @@
 using namespace std;
 
 
-int main()
+int main(int argc,char *argv[])
 {
+    // QApplication App(argc,argv);
+    // QWidget *Window;
     string nom;
     cout<<"Object Nom created"<<endl;
     vector<Joueur> Players_list;
@@ -55,21 +57,21 @@ int main()
                 distribute(T,5,21);            //distribue 5 cartes a chacun des joueurs
                 b=retour_indice(T);         //Proposer une carte sur table pour tous les joueurs et retourne lindice de celui qui la saisie
             }while (b==-1);
-            distribute(T,3,33,21,b); 
+            distribute(T,3,33,21,b);
             cout<<"********************\n";
             for (int i=0;i<T.getJoueurs().size();i++){
                 display_cards(T.getJoueurs()[i].get_player_paquet().getPaquet());
-            }        
-            for(int i=0;i<8;i++){
-                for(int j=0;j<4;j++){
-                    vector<Carte> C=T.getJoueurs()[i].cartes_possible(T.getCardsOnTable(),"trefle");//Affiche les cartes possibles dans la main du joueur                    
-                    display_cards(C);
-                    T.getJoueurs()[i].sortir_carte(T.setCardsOnTable(),T.getJoueurs()[i].choisir_carte(C));
-                    //T.Score(); // Affecte les scores necessaires a chaque equipe(necessite de remplacer int& get score par un mutateur int& setScore)
-                    //necessite de creation d'un methode qui fait la comparaison entre les 4 cartes du vecteur CardsOnTable
-                }
-                display_cards(T.getCardsOnTable());
             }
+            // for(int i=0;i<8;i++){
+            //     for(int j=3;j>=0;j--){
+            //         vector<Carte> C=T.getJoueurs()[i].cartes_possible(T.getCardsOnTable(),"trefle");//Affiche les cartes possibles dans la main du joueur
+            //         display_cards(C);
+            //         T.getJoueurs()[i].sortir_carte(T.setCardsOnTable(),T.getJoueurs()[i].choisir_carte(C));
+            //         //T.Score(); // Affecte les scores necessaires a chaque equipe(necessite de remplacer int& get score par un mutateur int& setScore)
+            //         //necessite de creation d'un methode qui fait la comparaison entre les 4 cartes du vecteur CardsOnTable
+            //     }
+            //     display_cards(T.getCardsOnTable());
+            // }
         }
 
         cout<<"Would you like to play another game?"<<endl;
@@ -78,4 +80,6 @@ int main()
         if (y=="No") break;
     }
     return 0;
+    // Window->show();
+    // App.exec();
 }

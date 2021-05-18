@@ -47,7 +47,19 @@ bool Carte::getAtout(){
 bool& Carte::setAtout(){
     return atout;
 }
-	
+
+string Carte::getAddress0(){
+    return AddressVertical;
+}
+string& Carte::setAddress0(){
+    return AddressVertical;
+}
+string Carte::getAddress90(){
+    return AddressHorizontal;
+}
+string& Carte::setAddress90(){
+    return AddressHorizontal;
+}
 
 int Carte::getVal_atout(){
     return val_atout;
@@ -83,6 +95,7 @@ bool Carte::operator==(Carte Card){
     }
     return false;
 }
+
 int Carte:: compare (Carte obj,string atout) 
 {/* fonction qui fait la comparaison entre deux carte selon l'atout ou non atout
     retourne 0 s'ils sont egaux , 1 si la carte en main est superieur a celle sur la table

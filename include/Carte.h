@@ -13,6 +13,8 @@ class Carte
     int acces = 1;                  //1 si le joueur peut sortir la carte(disponible) ,0 sinon
     int val_atout;                   // valeur d'une carte en atout
 	int val_hors_atout;              // valeur d'une carte hors atout
+    string AddressVertical;
+    string AddressHorizontal;
 
 
 public:
@@ -40,6 +42,13 @@ public:
     int& setVal_hors_atout();
     void operator=(Carte);
 	bool operator==(Carte);
+
+
+    string getAddress0();
+    string& setAddress0();
+
+    string getAddress90();
+    string& setAddress90();
 	
 	int compare (Carte,string); //Compare entre deux cartes //atout=couleur
 };

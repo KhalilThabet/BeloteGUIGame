@@ -1,6 +1,9 @@
 #include "../include/Joueur.h"
 
-Joueur::Joueur(){}
+Joueur::Joueur(){
+    Nom="";
+    Rang=-1;
+}
 
 Joueur::Joueur(string name,int Rg)
 {

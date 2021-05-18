@@ -15,10 +15,12 @@ Table::Table(vector<Joueur>& Players_list,Equipe& team1,Equipe& team2)
 										//pour stocker les informations sortante
 										//de la base de donnee
 										
-			sortie >> temp.setCouleur();
-			sortie >> temp.setValeur();
-			sortie >> temp.setVal_atout();
-			sortie >> temp.setVal_hors_atout();
+			sortie >> temp.setCouleur();sortie.ignore();
+			sortie >> temp.setValeur();sortie.ignore();
+			sortie >> temp.setVal_atout();sortie.ignore();
+			sortie >> temp.setVal_hors_atout();sortie.ignore();
+			sortie >> temp.setAddress0();
+			sortie >> temp.setAddress90();
 			AllCards.push_back(temp);
 		}
 	}
@@ -26,6 +28,7 @@ Table::Table(vector<Joueur>& Players_list,Equipe& team1,Equipe& team2)
 	{
 		cout << "Impossible d'ouvrir le fichier en lecture" << '\n';
 	}
+	displayAllCards();
 }
 
 
@@ -92,4 +95,14 @@ vector<Carte>& Table::setCardsOnTable(){
 }
 void Table::Score(){
 
+}
+void Table::displayAllCards(){
+	for(int i=0;i<32;i++){
+		// qDebug()<<i<<QString::fromStdString(AllCards[i].getCouleur());
+		cout<<AllCards[i].getAddress0()<<"\n";
+	}
+	for(int i=0;i<32;i++){
+		// qDebug()<<i<<QString::fromStdString(AllCards[i].getCouleur());
+		cout<<AllCards[i].getAddress90()<<"\n";
+	}
 }
