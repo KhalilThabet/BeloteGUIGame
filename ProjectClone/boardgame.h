@@ -21,10 +21,10 @@ class BoardGame
 {
 public:
     BoardGame(vector<Joueur>&,QWidget*);
-    int ShowLeftCards(QGridLayout*);
-    int ShowTopCards(QGridLayout*);
-    int ShowRightCards(QGridLayout*);
-    int ShowBotCards(QGridLayout*);
+    int ShowLeftCards(QGridLayout*,Table&);
+    int ShowTopCards(QGridLayout*,Table&);
+    int ShowRightCards(QGridLayout*,Table&);
+    int ShowBotCards(QGridLayout*,Table&);
 
     void HideLeftCards();
     void HideTopCards();
@@ -44,7 +44,8 @@ public:
 
     // int getTopDeckSize();
     // int getLeftDeckSize();
-    void run(Table);
+    void run(Table&,QLabel*,QLabel*,int&);
+
 
 
 
@@ -53,21 +54,29 @@ private:
     QLabel* label;
     QLabel* label1;
 
+    QLabel* Nom1;
+    QLabel* Nom2;
+    QLabel* Nom3;
+    QLabel* Nom4;
     QVector<ClickableLabel*> TopHidden;
     QVector<ClickableLabel*> TopDeck;
     QVector<ClickableLabel*> TopDeckFixe;
+    QVector<Carte> TopCards;
 
     QVector<ClickableLabel*> BotHidden;
     QVector<ClickableLabel*> BotDeck;
     QVector<ClickableLabel*> BotDeckFixe;
+    QVector<Carte> BotCards;
 
     QVector<ClickableLabel*> LeftHidden;
     QVector<ClickableLabel*> LeftDeck;
     QVector<ClickableLabel*> LeftDeckFixe;
+    QVector<Carte> LeftCards;
 
     QVector<ClickableLabel*> RightHidden;
     QVector<ClickableLabel*> RightDeck;
     QVector<ClickableLabel*> RightDeckFixe;
+    QVector<Carte> RightCards;
 
     QVector<ClickableLabel*> CardsOnTable;
      

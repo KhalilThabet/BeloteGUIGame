@@ -8,6 +8,9 @@ Equipe::Equipe(Joueur& J1,Joueur& J2)
     team.push_back(J2);
 }
 
+vector<Joueur> Equipe::getTeam(){
+    return team;
+}
 int Equipe::getScore() {
     return score;
 }
@@ -24,7 +27,5 @@ string Equipe::afficheTeam(int k){
         s+=(team[i].getNom());
         s+="\n";
     }
-    s+=to_string(this->getScore());
-    s+="\n\n";
     return s;
 }

@@ -12,12 +12,13 @@
 void close(QWidget* w,vector<Joueur>& J,QWidget* NewWindow){
     //fonction qui sert a fermet la fenetre w et a ouvrir une nouvelle fenetre pour une nouvelle disposition
     if (J.size()==4) {
-        BoardGame Je(J,NewWindow);
         w->close();
+        BoardGame Je(J,NewWindow);
+
     }
 }
 TsTestWidget* loading(){
-    TsTestWidget* LoadingScreen=new TsTestWidget("C:/Users/Khali/OneDrive/Bureau/Qt Training/loading1.gif");
+    TsTestWidget* LoadingScreen=new TsTestWidget("C:/Users/Khali/OneDrive/Bureau/Qt Training/loading.gif");
     LoadingScreen->showFullScreen();
     LoadingScreen->setStyleSheet("background:black");
     return LoadingScreen;

@@ -28,7 +28,7 @@ public:
 	string getCouleur();                //retourne l'attribut couleur
 	string& setCouleur();  
 
-    string getValeur(); //retourne l'attribut valeur
+    string getValeur();                 //retourne l'attribut valeur
     string& setValeur() ;             
 
     bool getAtout();                    //retourne l'attribut booleen atout

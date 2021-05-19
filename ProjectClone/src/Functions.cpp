@@ -29,41 +29,58 @@ void distribute(Table& T,int NumberOfCardToDistribute,int ending,int StartingCar
 	}
 }
 
-
+void affectation_Atout (Table& T,vector<Carte>& V){		
+												//Changer la valeur d'atout de chaque Carte dans V à 1
+	for (int j=0;j<V.size();j++)
+				{
+					if (((string)((V[j]).getCouleur()) == (string)(T.getAllCards()[20]).getCouleur()))  //identifier le carte de couleur egale à celle de l'atout
+						{
+							(V[j]).setAtout()=1;															//Canger la valeur de l'atout
+						}
+				}
+}
+void affeectation_atout_joueur (Table& T)															//affectation de l'atout de paquet de chaque joueur
+{
+	for (int i=0; i<4;i++)																			//parcour de vector de joueur
+	{
+		affectation_Atout (T,T.setJoueurs()[i].set_player_paquet().setPaquet());								//Appel à la fonction Affectation_atout 
+	}
+}
 int retour_indice(Table& T){
-	/* fonction qui retourne l'indice du joueur qui a accepter
-		la carte mise sur la table */
-    //char reponse='Y';
-//    return 1;
-    for (int j=0;j<32;j++)
-    {
-        if ((T.getAllCards()[j]).getCouleur() == (T.getAllCards()[20]).getCouleur())
-            (T.setAllCards()[j]).setAtout() = 1;
-    }
-    (T.setT1()).setatout()=1;
+		
+		int i=1;
+				
+				affectation_Atout (T,T.setAllCards());													//changer l'atout tout les cartes de Table
+				
+				if (i==3 || i==1){																		//Changer l'atout de l'equipe 1
+					T.setT1().setatout()=1;
+				}
+				
+				else {																					//changer l'atout de l'equipe 2
+					T.setT2().setatout()=1;
+				}
 
-    // else {
-    //     (T.setT2()).setatout()=1;
-    // }
-
-    return 1;
-	// cout<<"Entering Retour Indice"<<endl;
-//	for(int i=0;i<4;i++) //Parcour des joueurs en leur proposant la carte
-//	{
-
-//		// cout << "Carte de valeur:" << (T.getAllCards()[20]).getValeur()<<"\n" <<"Carte de couleur:" << (T.getAllCards()[20]).getCouleur() <<endl;
-//		// cout <<"Tapez : Y  vous voulez saisir la carte sinon n'importe quel autre lettre";
-//		//reponse='Y';
-
-////		if (toupper(reponse) == 'Y')
-////		{
+				return i;																				//Retourne l'indice de joueur qui prend l'atout 
+	// 		int j=-1;
+	
+	// QEventLoop* loop=new QEventLoop;
+	// for(int i=0;i<4;i++) //Parcour des joueurs en leur proposant la carte
+	// {	QLabel* label=new QLabel(QString::fromStdString((T.getAllCards()[20]).getValeur()+" "+(T.getAllCards()[20]).getCouleur())) ;
+	// 	QLineEdit* Response=new QLineEdit;
+	// 	Response->setPlaceholderText("Yes/No");
+	// 	layout->addWidget(label,3,6);
+	// 	layout->addWidget(label,4,6);
+	// 	string s="";
+	// 	QObject::connect(Response,&QLineEdit::editingFinished,[Response,label,loop,i,&j,&T](){delete Response;delete label;loop->exit();j=verify(T,Response->displayText().toLocal8Bit().constData(),i);});
+		
+		
+	// }
+	// loop->exec();
+	// return j;
 			
+			
+		
 
-		
-////		}
-		
-//	}
-//	return -1;
 	
 }
 

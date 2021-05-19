@@ -36,6 +36,7 @@ public:
     void Score(string,int);
     int somme_score(string);
     int joueur_gagnant(string,int);
+    vector<Joueur> RankChanger(int);
         
 
 };

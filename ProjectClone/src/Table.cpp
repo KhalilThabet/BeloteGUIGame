@@ -1,5 +1,6 @@
 #include "../include/Table.h"
 #include <fstream>
+#include <ctime>
 Table::Table(vector<Joueur>& Players_list,Equipe& team1,Equipe& team2)
 {	
 	Equipe T1=team1;
@@ -70,7 +71,8 @@ void Table::melange()						//Melange des cartes du vecteur AllCards
 {
 	int b;
 	for (int a = 0;a < 32;a++)
-	{
+    {   unsigned seed=time(0);
+        srand(seed);
 		b = rand() % 32;
 		Carte C ;
 		C = AllCards[a];
@@ -79,6 +81,7 @@ void Table::melange()						//Melange des cartes du vecteur AllCards
 	}
 
 }
+
 Carte Table::compareTableCards(string atout){
 	Carte Highest_Card=CardsOnTable[0];
 	for(int i=1;i<4;i++){
@@ -88,19 +91,22 @@ Carte Table::compareTableCards(string atout){
 	}
 	return Highest_Card;
 }
+
 vector<Carte> Table::getCardsOnTable(){
 	return CardsOnTable;
 }
 vector<Carte>& Table::setCardsOnTable(){
 	return CardsOnTable;
 }
-int Table:: joueur_gagnant(string atou,int b)   //retourne l'indice du joueur gagant dans le le vecteur joueurs
+
+
+int Table:: joueur_gagnant(string atout,int b)   //retourne l'indice du joueur gagant dans le le vecteur joueurs
 {
     int index_Highest_Card ;
     //pour trouver l'indice du plus grande carte dans cardsontable
     for(int i=0;i<CardsOnTable.size();i++)
     {
-        if(CardsOnTable[i]==compareTableCards(atou))
+        if(CardsOnTable[i]==compareTableCards(atout))
         {index_Highest_Card =i;}
     }
     //b : contient l'indice du joueur qui prend l'atout existe dans le main
@@ -123,19 +129,28 @@ int Table:: somme_score(string at)   //retourne la somme des 4 cartes sur table
     }
     return somme;
 }
-void Table::Score(string atout,int b)
-{
-    if ((joueur_gagnant(atout,b)==0)||(joueur_gagnant(atout,b)==2)  )//equipe 1 remporte le pli
+
+void Table::Score(string atout,int b){
+	 int score_pli;
+	 if ((joueur_gagnant(atout,b)==0)||(joueur_gagnant(atout,b)==2))  //equipe 1 remporte le pli
     {
-        int ScorePli=somme_score(atout);
-        T1.setScore()+=ScorePli;
+        score_pli=somme_score(atout);
+		qDebug() << "ajout de "<<score_pli<<" points\n";
+        qDebug() <<"les deux joueurs 0 et 2 gagnent cette manche  ";
+		T1.setScore()=score_pli;
+		
     }
     else      // equipe 2 remporte le pli
     {
-        int ScorePli=somme_score(atout);
-        T2.setScore()+=ScorePli;
+        score_pli=somme_score(atout);
+		qDebug() << "ajout de "<<score_pli<<" points\n";
+        qDebug() <<"les deux joueurs 1 et 3 gagnent cette manche  ";
+		T2.setScore()=score_pli;
+		
     }
+	
 }
+
 void Table::displayAllCards(){
 	for(int i=0;i<32;i++){
 		qDebug()<<i<<QString::fromStdString(AllCards[i].getAddress0());
@@ -143,4 +158,16 @@ void Table::displayAllCards(){
 	for(int i=0;i<32;i++){
 		qDebug()<<i<<QString::fromStdString(AllCards[i].getAddress90());
 	}
+}
+vector<Joueur> Table::RankChanger(int index){
+	vector<Joueur> temp1=Joueurs;
+	for(int j=0;j<index;j++){
+		vector<Joueur> temp2;
+		for(int i=1;i<4;i++){
+			temp2.push_back(temp1[i]);
+		}
+		temp2.push_back(temp1[0]);
+	}
+	return temp1;
+
 }

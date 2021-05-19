@@ -17,6 +17,7 @@ class Equipe
 public:
    Equipe();
 	Equipe(Joueur&,Joueur&);         //Constructeur d'equipe de deux joueurs
+   vector<Joueur> getTeam();
 	int getScore(); 
    int& setScore();                //Accesseurs de l'attribut privee score
    int& setatout();            //Mutateur de l'attribut privee atout
