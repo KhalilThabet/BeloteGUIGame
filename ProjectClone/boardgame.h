@@ -26,10 +26,10 @@ public:
     int ShowRightCards(QGridLayout*);
     int ShowBotCards(QGridLayout*);
 
-    void HideLeftCards(QGridLayout*);
-    void HideTopCards(QGridLayout*);
-    void HideRightCards(QGridLayout*);
-    void HideBotCards(QGridLayout*);
+    void HideLeftCards();
+    void HideTopCards();
+    void HideRightCards();
+    void HideBotCards();
 
     void StoreTopCards(Table,QGridLayout*);
     void StoreBotCards(Table,QGridLayout*);
@@ -44,7 +44,7 @@ public:
 
     // int getTopDeckSize();
     // int getLeftDeckSize();
-    void run();
+    void run(Table);
 
 
 
@@ -55,15 +55,19 @@ private:
 
     QVector<ClickableLabel*> TopHidden;
     QVector<ClickableLabel*> TopDeck;
+    QVector<ClickableLabel*> TopDeckFixe;
 
     QVector<ClickableLabel*> BotHidden;
     QVector<ClickableLabel*> BotDeck;
+    QVector<ClickableLabel*> BotDeckFixe;
 
     QVector<ClickableLabel*> LeftHidden;
     QVector<ClickableLabel*> LeftDeck;
+    QVector<ClickableLabel*> LeftDeckFixe;
 
     QVector<ClickableLabel*> RightHidden;
     QVector<ClickableLabel*> RightDeck;
+    QVector<ClickableLabel*> RightDeckFixe;
 
     QVector<ClickableLabel*> CardsOnTable;
      

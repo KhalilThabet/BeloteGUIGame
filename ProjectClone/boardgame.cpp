@@ -20,7 +20,7 @@ BoardGame::BoardGame(vector<Joueur>& J,QWidget* BG)
     layout->addWidget(QuitButton,12,0,Qt::AlignBottom);
     BG->setStyleSheet("QWidget#BoardGame {background:url('C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/GroundImageBigger') no-repeat center center fixed ;background-size:cover;}");
     layout->addWidget(Replay,11,0,Qt::AlignBottom);
-    QObject::connect(QuitButton,&QPushButton::clicked,BG,[BG](){BG->close();});
+    QObject::connect(QuitButton,&QPushButton::clicked,BG,[BG](){delete BG;});
     //QObject::connect(Replay,&QPushButton::clicked,[s,BG](){BG->close();s(2);BG->show();});
 
 
@@ -86,205 +86,430 @@ BoardGame::BoardGame(vector<Joueur>& J,QWidget* BG)
     ShowBotCards(layout);
     ShowRightCards(layout);
     ShowTopCards(layout);
-    run();
+    run(T);
     i++;
     }
 //    event->exec();
 
 
 }
- void BoardGame::run(){
+ void BoardGame::run(Table T){
      for(int i=0;i<4;i++){
          ClickableLabel* l=CardsOnTable[i];
          l->setText("");
      }
+     T.getT1().setScore()+=20;
      CardsOnTable={};
 
  }
-void BoardGame::StoreLeftCards(Table T,QGridLayout*layout){
-    for(int i=3;i<11;i++){
-
-                string stdString="<img src='"+T.getJoueurs()[1].get_player_paquet().getPaquet()[i-3].getAddress90()+"'>";
-                QString s=QString::fromStdString(stdString);
-                ClickableLabel* l=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize90.png'>");
-                ClickableLabel* l1=new ClickableLabel(s);
-                LeftHidden.push_back(l);
-                LeftDeck.push_back(l1);
-                layout->addWidget(l,i,0);
-
-            }
-}
-int BoardGame::ShowLeftCards(QGridLayout* layout){
-
-    QEventLoop *loop=new QEventLoop;
-        for (int i=0;i<8;i++){
-            ClickableLabel* l=LeftHidden[i];
-            ClickableLabel* l1=LeftDeck[i];
-            layout->addWidget(l1,i+3,0);
-
-
-            QObject::connect(l1,&ClickableLabel::clicked,[layout,l,l1,loop,this](){disconnectLeft();
-                                                                                  loop->quit();
-                                                                                  layout->addWidget(l1,6,7);
-                                                                                  l->setText("");
-                                                                                  CardsOnTable.push_back(l1);
-                                                                                  HideLeftCards(layout);});
-
-        }
-
-        loop->exec();
-
-    return 0;
-}
-void BoardGame::disconnectLeft(){
-    for(int i=0;i<8;i++){
-        ClickableLabel* l1=LeftDeck[i];
-        l1->disconnect();
-    }
-}
-void BoardGame::HideLeftCards(QGridLayout *layout){
-    for (int i=0;i<8;i++){
-        ClickableLabel* l=LeftHidden[i];
-        ClickableLabel* l1=LeftDeck[i];
-        layout->addWidget(l,i+3,0);
-        delete l;
-        delete l1;
-
-    }
-
-}
-void BoardGame::StoreBotCards(Table T,QGridLayout* layout){
-    for(int i=4;i<12;i++){
-                string stdString="<img src='"+T.getJoueurs()[3].get_player_paquet().getPaquet()[i-3].getAddress0()+"'>";
-                QString s=QString::fromStdString(stdString);
-                ClickableLabel* l=new ClickableLabel("<img 'src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize.png'>");
-                ClickableLabel* l1=new ClickableLabel(s);
-                BotHidden.push_back(l);
-                BotDeck.push_back(l1);
-                layout->addWidget(l,10,i,2,1);   
-            }
-}
-int BoardGame::ShowBotCards(QGridLayout* layout){
-    QEventLoop *loop=new QEventLoop;
-    for(int i=0;i<8;i++){
-        ClickableLabel* l=BotHidden[i];
-        ClickableLabel* l1=BotDeck[i];
-        layout->addWidget(l1,10,i+4,2,1);
-        QObject::connect(l1,&ClickableLabel::clicked,[layout,l,l1,loop,this](){disconnectBot();
-                                                                              loop->quit();
-                                                                              layout->addWidget(l1,6,8);
-                                                                              l->setText("");
-                                                                              CardsOnTable.push_back(l1);
-                                                                              HideBotCards(layout);});
-
-    }
-    loop->exec();
-    return 0;
-}
-void BoardGame::disconnectBot(){
-    for(int i=0;i<8;i++){
-        ClickableLabel* l=BotHidden[i];
-        l->disconnect();
-    }
-}
-void BoardGame::HideBotCards(QGridLayout *layout){
-    for (int i=0;i<8;i++){
-        ClickableLabel* l=BotHidden[i];
-        ClickableLabel* l1=BotDeck[i];
-        layout->addWidget(l,10,i+4,2,1);
-
-    }
-}
-void BoardGame::StoreTopCards(Table T,QGridLayout* layout){
-    for(int i=4;i<12;i++){
-                string stdString="<img src='"+T.getJoueurs()[2].get_player_paquet().getPaquet()[i-3].getAddress0()+"'>";
-                QString s=QString::fromStdString(stdString);
-                ClickableLabel* l=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize.png'>");
-                ClickableLabel* l1=new ClickableLabel(s);
-                TopHidden.push_back(l);
-                TopDeck.push_back(l1);
-                layout->addWidget(l,0,i,1,1);
-            }
-}
-int BoardGame::ShowTopCards(QGridLayout* layout){
-    QEventLoop *loop=new QEventLoop;
-
-    for(int i=0;i<8;i++){
-
-        ClickableLabel* l=TopHidden[i];
-        ClickableLabel* l1=TopDeck[i];
-        layout->addWidget(l1,0,i+4,1,1);
-        QObject::connect(l1,&ClickableLabel::clicked,[layout,l,l1,loop,this](){disconnectTop();
-                                                                              loop->quit();
-                                                                              layout->addWidget(l1,6,6);
-                                                                              l->setText("");
-                                                                              CardsOnTable.push_back(l1);
-                                                                              HideTopCards(layout);});//LeftCards(layout);//emit l1->Screen();
-
-
-    }
-    loop->exec();
-    return 0;
-}
-void BoardGame::disconnectTop(){
-    for(int i=0;i<8;i++){
-        ClickableLabel* l=TopHidden[i];
-        l->disconnect();
-    }
-}
-void BoardGame::HideTopCards(QGridLayout *layout){
-    for (int i=0;i<8;i++){
-        ClickableLabel* l=TopHidden[i];
-        layout->addWidget(l,0,i+4,1,1);
-
-    }
-}
-void BoardGame::StoreRightCards(Table T,QGridLayout* layout){
+ void BoardGame::StoreLeftCards(Table T,QGridLayout*layout){
      for(int i=3;i<11;i++){
+                 Carte V=T.getJoueurs()[1].get_player_paquet().getPaquet()[i-3];
+                 string stdString="<img src='"+V.getAddress90()+"'>";
+                 QString s=QString::fromStdString(stdString);
+                 string stdString1="<img src='"+V.getAddress0()+"'>";
+                 QString s1=QString::fromStdString(stdString1);
 
-                string stdString="<img src='"+T.getJoueurs()[0].get_player_paquet().getPaquet()[i-3].getAddress90()+"'>";
-                QString s=QString::fromStdString(stdString);
-                ClickableLabel* l=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize90.png'>");
-                ClickableLabel* l1=new ClickableLabel(s);
-                RightHidden.push_back(l);
-                RightDeck.push_back(l1);
-                layout->addWidget(l,i,16);
+                 ClickableLabel* HiddenRotated=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize90.png'>");
+                 ClickableLabel* CardRotated=new ClickableLabel(s);
+                 ClickableLabel* CardFixe=new ClickableLabel(s1);
+                 LeftHidden.push_back(HiddenRotated);
+                 LeftDeck.push_back(CardRotated);
+                 LeftDeckFixe.push_back(CardFixe);
+                 layout->addWidget(HiddenRotated,i,0);
+
+             }
+ }
+ int BoardGame::ShowLeftCards(QGridLayout* layout){
+
+     QEventLoop *loop=new QEventLoop;
+         for (int i=0;i<8;i++){
+             ClickableLabel* l=LeftHidden[i];
+             l->setVisible(false);
+             ClickableLabel* l1=LeftDeck[i];
+             l1->setVisible(true);
+             ClickableLabel* l2=LeftDeckFixe[i];
+             layout->addWidget(l1,i+3,0);
+
+
+             QObject::connect(l1,&ClickableLabel::clicked,[layout,l,l1,l2,loop,this](){disconnectLeft();
+                                                                                   loop->quit();
+                                                                                   layout->addWidget(l2,6,7);
+                                                                                   l1->setText("");
+                                                                                   l->setText("");
+                                                                                   CardsOnTable.push_back(l2);
+                                                                                   HideLeftCards();});//HideLeftCards(layout);
+
+         }
+
+         loop->exec();
+
+     return 0;
+ }
+ void BoardGame::disconnectLeft(){
+     for(int i=0;i<8;i++){
+         ClickableLabel* l=LeftDeck[i];
+         l->disconnect();
+     }
+ }
+ void BoardGame::HideLeftCards(){
+     for (int i=0;i<8;i++){
+         ClickableLabel* l=LeftHidden[i];
+         ClickableLabel* l1=LeftDeck[i];
+         l1->setVisible(false);
+         l->setVisible(true);
+
+     }
+
+ }
+ void BoardGame::StoreBotCards(Table T,QGridLayout* layout){
+     for(int i=4;i<12;i++){
+         Carte V=T.getJoueurs()[3].get_player_paquet().getPaquet()[i-4];
+                 string stdString="<img src='"+V.getAddress0()+"'>";
+                 QString s=QString::fromStdString(stdString);
+                 ClickableLabel* l=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize.png'>");
+                 ClickableLabel* l1=new ClickableLabel(s);
+                 ClickableLabel* l2=new ClickableLabel(s);
+                 BotHidden.push_back(l);
+                 BotDeck.push_back(l1);
+                 BotDeckFixe.push_back(l2);
+                 layout->addWidget(l,10,i,2,1);
+             }
+ }
+ int BoardGame::ShowBotCards(QGridLayout* layout){
+     QEventLoop *loop=new QEventLoop;
+     for(int i=0;i<8;i++){
+         ClickableLabel* l=BotHidden[i];
+         l->setVisible(false);
+         ClickableLabel* l1=BotDeck[i];
+         ClickableLabel* l2=BotDeckFixe[i];
+         l1->setVisible(true);
+         layout->addWidget(l1,10,i+4,2,1);
+         QObject::connect(l1,&ClickableLabel::clicked,[layout,l,l1,l2,loop,this](){disconnectBot();
+                                                                               loop->quit();
+                                                                               layout->addWidget(l2,6,8);
+                                                                               l->setText("");
+                                                                               CardsOnTable.push_back(l2);
+                                                                               l1->setText("");
+                                                                               HideBotCards();});//HideBotCards(layout);
+
+     }
+     loop->exec();
+     return 0;
+ }
+ void BoardGame::disconnectBot(){
+     for(int i=0;i<8;i++){
+         ClickableLabel* l=BotDeck[i];
+         l->disconnect();
+     }
+ }
+ void BoardGame::HideBotCards(){
+     for (int i=0;i<8;i++){
+         ClickableLabel* l=BotHidden[i];
+         ClickableLabel* l1=BotDeck[i];
+         l->setVisible(true);
+         l1->setVisible(false);
+
+     }
+ }
+ void BoardGame::StoreTopCards(Table T,QGridLayout* layout){
+     for(int i=4;i<12;i++){
+         Carte V=T.getJoueurs()[2].get_player_paquet().getPaquet()[i-4];
+                 string stdString="<img src='"+V.getAddress0()+"'>";
+                 QString s=QString::fromStdString(stdString);
+                 ClickableLabel* l=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize.png'>");
+                 ClickableLabel* l1=new ClickableLabel(s);
+                 ClickableLabel* l2=new ClickableLabel(s);
+                 TopHidden.push_back(l);
+                 TopDeck.push_back(l1);
+                 TopDeckFixe.push_back(l2);
+                 layout->addWidget(l,0,i,1,1);
+             }
+ }
+ int BoardGame::ShowTopCards(QGridLayout* layout){
+     QEventLoop *loop=new QEventLoop;
+
+     for(int i=0;i<8;i++){
+
+         ClickableLabel* l=TopHidden[i];
+         l->setVisible(false);
+         ClickableLabel* l1=TopDeck[i];
+         ClickableLabel* l2=TopDeckFixe[i];
+         l1->setVisible(true);
+         layout->addWidget(l1,0,i+4,1,1);
+         QObject::connect(l1,&ClickableLabel::clicked,[layout,l,l1,l2,loop,this](){disconnectTop();
+                                                                               loop->quit();
+                                                                               layout->addWidget(l1,6,6);
+                                                                               l->setText("");
+                                                                               CardsOnTable.push_back(l2);
+                                                                               l1->setText("");
+                                                                               HideTopCards();});//HideTopCards(layout);LeftCards(layout);//emit l1->Screen();
+
+
+     }
+     loop->exec();
+     return 0;
+ }
+ void BoardGame::disconnectTop(){
+     for(int i=0;i<8;i++){
+         ClickableLabel* l1=TopDeck[i];
+         l1->disconnect();
+     }
+ }
+ void BoardGame::HideTopCards(){
+     for (int i=0;i<8;i++){
+         ClickableLabel* l=TopHidden[i];
+         ClickableLabel* l1=TopDeck[i];
+         l1->setVisible(false);
+         l->setVisible(true);
+
+     }
+ }
+ void BoardGame::StoreRightCards(Table T,QGridLayout* layout){
+      for(int i=3;i<11;i++){
+             Carte V=T.getJoueurs()[0].get_player_paquet().getPaquet()[i-3];
+                 string stdString="<img src='"+V.getAddress90()+"'>";
+                 QString s=QString::fromStdString(stdString);
+                 string stdString1="<img src='"+V.getAddress0()+"'>";
+                 QString s1=QString::fromStdString(stdString1);
+
+                 ClickableLabel* HiddenRotated=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize90.png'>");
+                 ClickableLabel* CardRotated=new ClickableLabel(s);
+                 ClickableLabel* CardFixe=new ClickableLabel(s1);
+
+                 RightHidden.push_back(HiddenRotated);
+                 RightDeck.push_back(CardRotated);
+                 RightDeckFixe.push_back(CardFixe);
+                 layout->addWidget(HiddenRotated,i,16);
+
+
+
+             }
+ }
+ int BoardGame::ShowRightCards(QGridLayout* layout){
+     QEventLoop *loop=new QEventLoop;
+
+     for(int i=0;i<8;i++){
+             ClickableLabel* l=RightHidden[i];
+             l->setVisible(false);
+             ClickableLabel* l1=RightDeck[i];
+             l1->setVisible(true);
+             ClickableLabel*l2=RightDeckFixe[i];
+             layout->addWidget(l1,i+3,16);
+             QObject::connect(l1,&ClickableLabel::clicked,[layout,l,l1,l2,loop,this](){disconnectRight();
+                                                                                   loop->quit();
+                                                                                   layout->addWidget(l2,6,9);
+                                                                                   l->setText("");
+                                                                                   l1->setText("");
+                                                                                   CardsOnTable.push_back(l2);
+                                                                                   HideRightCards();});// HideRightCards(layout);
+     }
+     loop->exec();
+     return 0;
+
+ }
+
+ void BoardGame::disconnectRight(){
+     for(int i=0;i<8;i++){
+         ClickableLabel* l=RightHidden[i];
+         l->disconnect();
+     }
+ }
+ void BoardGame::HideRightCards(){
+     for (int i=0;i<8;i++){
+         ClickableLabel* l=RightHidden[i];
+         ClickableLabel* l1=RightDeck[i];
+         l->setVisible(true);
+         l1->setVisible(false);
+
+
+     }
+ }
+
+//void BoardGame::StoreLeftCards(Table T,QGridLayout*layout){
+//    for(int i=3;i<11;i++){
+
+//                string stdString="<img src='"+T.getJoueurs()[1].get_player_paquet().getPaquet()[i-3].getAddress90()+"'>";
+//                QString s=QString::fromStdString(stdString);
+//                ClickableLabel* l=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize90.png'>");
+//                ClickableLabel* l1=new ClickableLabel(s);
+//                LeftHidden.push_back(l);
+//                LeftDeck.push_back(l1);
+//                layout->addWidget(l,i,0);
+
+//            }
+//}
+//int BoardGame::ShowLeftCards(QGridLayout* layout){
+
+//    QEventLoop *loop=new QEventLoop;
+//        for (int i=0;i<8;i++){
+//            ClickableLabel* l=LeftHidden[i];
+//            ClickableLabel* l1=LeftDeck[i];
+//            layout->addWidget(l1,i+3,0);
+
+
+//            QObject::connect(l1,&ClickableLabel::clicked,[layout,l,l1,loop,this](){disconnectLeft();
+//                                                                                  loop->quit();
+//                                                                                  layout->addWidget(l1,6,7);
+//                                                                                  l->setText("");
+//                                                                                  CardsOnTable.push_back(l1);
+//                                                                                  HideLeftCards(layout);});
+
+//        }
+
+//        loop->exec();
+
+//    return 0;
+//}
+//void BoardGame::disconnectLeft(){
+//    for(int i=0;i<8;i++){
+//        ClickableLabel* l1=LeftDeck[i];
+//        l1->disconnect();
+//    }
+//}
+//void BoardGame::HideLeftCards(QGridLayout *layout){
+//    for (int i=0;i<8;i++){
+//        ClickableLabel* l=LeftHidden[i];
+//        ClickableLabel* l1=LeftDeck[i];
+//        layout->addWidget(l,i+3,0);
+//        delete l;
+//        delete l1;
+
+//    }
+
+//}
+//void BoardGame::StoreBotCards(Table T,QGridLayout* layout){
+//    for(int i=4;i<12;i++){
+//                string stdString="<img src='"+T.getJoueurs()[3].get_player_paquet().getPaquet()[i-3].getAddress0()+"'>";
+//                QString s=QString::fromStdString(stdString);
+//                ClickableLabel* l=new ClickableLabel("<img 'src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize.png'>");
+//                ClickableLabel* l1=new ClickableLabel(s);
+//                BotHidden.push_back(l);
+//                BotDeck.push_back(l1);
+//                layout->addWidget(l,10,i,2,1);
+//            }
+//}
+//int BoardGame::ShowBotCards(QGridLayout* layout){
+//    QEventLoop *loop=new QEventLoop;
+//    for(int i=0;i<8;i++){
+//        ClickableLabel* l=BotHidden[i];
+//        ClickableLabel* l1=BotDeck[i];
+//        layout->addWidget(l1,10,i+4,2,1);
+//        QObject::connect(l1,&ClickableLabel::clicked,[layout,l,l1,loop,this](){disconnectBot();
+//                                                                              loop->quit();
+//                                                                              layout->addWidget(l1,6,8);
+//                                                                              l->setText("");
+//                                                                              CardsOnTable.push_back(l1);
+//                                                                              HideBotCards(layout);});
+
+//    }
+//    loop->exec();
+//    return 0;
+//}
+//void BoardGame::disconnectBot(){
+//    for(int i=0;i<8;i++){
+//        ClickableLabel* l=BotHidden[i];
+//        l->disconnect();
+//    }
+//}
+//void BoardGame::HideBotCards(QGridLayout *layout){
+//    for (int i=0;i<8;i++){
+//        ClickableLabel* l=BotHidden[i];
+//        ClickableLabel* l1=BotDeck[i];
+//        layout->addWidget(l,10,i+4,2,1);
+
+//    }
+//}
+//void BoardGame::StoreTopCards(Table T,QGridLayout* layout){
+//    for(int i=4;i<12;i++){
+//                string stdString="<img src='"+T.getJoueurs()[2].get_player_paquet().getPaquet()[i-3].getAddress0()+"'>";
+//                QString s=QString::fromStdString(stdString);
+//                ClickableLabel* l=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize.png'>");
+//                ClickableLabel* l1=new ClickableLabel(s);
+//                TopHidden.push_back(l);
+//                TopDeck.push_back(l1);
+//                layout->addWidget(l,0,i,1,1);
+//            }
+//}
+//int BoardGame::ShowTopCards(QGridLayout* layout){
+//    QEventLoop *loop=new QEventLoop;
+
+//    for(int i=0;i<8;i++){
+
+//        ClickableLabel* l=TopHidden[i];
+//        ClickableLabel* l1=TopDeck[i];
+//        layout->addWidget(l1,0,i+4,1,1);
+//        QObject::connect(l1,&ClickableLabel::clicked,[layout,l,l1,loop,this](){disconnectTop();
+//                                                                              loop->quit();
+//                                                                              layout->addWidget(l1,6,6);
+//                                                                              l->setText("");
+//                                                                              CardsOnTable.push_back(l1);
+//                                                                              HideTopCards(layout);});//LeftCards(layout);//emit l1->Screen();
+
+
+//    }
+//    loop->exec();
+//    return 0;
+//}
+//void BoardGame::disconnectTop(){
+//    for(int i=0;i<8;i++){
+//        ClickableLabel* l=TopHidden[i];
+//        l->disconnect();
+//    }
+//}
+//void BoardGame::HideTopCards(QGridLayout *layout){
+//    for (int i=0;i<8;i++){
+//        ClickableLabel* l=TopHidden[i];
+//        layout->addWidget(l,0,i+4,1,1);
+
+//    }
+//}
+//void BoardGame::StoreRightCards(Table T,QGridLayout* layout){
+//     for(int i=3;i<11;i++){
+
+//                string stdString="<img src='"+T.getJoueurs()[0].get_player_paquet().getPaquet()[i-3].getAddress90()+"'>";
+//                QString s=QString::fromStdString(stdString);
+//                ClickableLabel* l=new ClickableLabel("<img src='C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/CardlowerSize90.png'>");
+//                ClickableLabel* l1=new ClickableLabel(s);
+//                RightHidden.push_back(l);
+//                RightDeck.push_back(l1);
+//                layout->addWidget(l,i,16);
 
             
 
-            }
-}
-int BoardGame::ShowRightCards(QGridLayout* layout){
-    QEventLoop *loop=new QEventLoop;
+//            }
+//}
+//int BoardGame::ShowRightCards(QGridLayout* layout){
+//    QEventLoop *loop=new QEventLoop;
 
-    for(int i=0;i<8;i++){
-            ClickableLabel* l=RightHidden[i];
-            ClickableLabel* l1=RightDeck[i];
-//            l1->show();
-            layout->addWidget(l1,i+3,16);
-            QObject::connect(l1,&ClickableLabel::clicked,[layout,l,l1,loop,this](){disconnectRight();
-                                                                                  loop->quit();
-                                                                                  layout->addWidget(l1,6,9);
-                                                                                  l->setText("");
-                                                                                  CardsOnTable.push_back(l1);
-                                                                                  HideRightCards(layout);});
-    }
-    loop->exec();
-    return 0;
+//    for(int i=0;i<8;i++){
+//            ClickableLabel* l=RightHidden[i];
+//            ClickableLabel* l1=RightDeck[i];
+////            l1->show();
+//            layout->addWidget(l1,i+3,16);
+//            QObject::connect(l1,&ClickableLabel::clicked,[layout,l,l1,loop,this](){disconnectRight();
+//                                                                                  loop->quit();
+//                                                                                  layout->addWidget(l1,6,9);
+//                                                                                  l->setText("");
+//                                                                                  CardsOnTable.push_back(l1);
+//                                                                                  HideRightCards(layout);});
+//    }
+//    loop->exec();
+//    return 0;
 
-}
+//}
 
-void BoardGame::disconnectRight(){
-    for(int i=0;i<8;i++){
-        ClickableLabel* l=RightHidden[i];
-        l->disconnect();
-    }
-}
-void BoardGame::HideRightCards(QGridLayout *layout){
-    for (int i=0;i<8;i++){
-        ClickableLabel* l=TopHidden[i];
-        ClickableLabel* l1=TopDeck[i];
-        layout->addWidget(l,i+3,16);
+//void BoardGame::disconnectRight(){
+//    for(int i=0;i<8;i++){
+//        ClickableLabel* l=RightHidden[i];
+//        l->disconnect();
+//    }
+//}
+//void BoardGame::HideRightCards(QGridLayout *layout){
+//    for (int i=0;i<8;i++){
+//        ClickableLabel* l=TopHidden[i];
+//        ClickableLabel* l1=TopDeck[i];
+//        layout->addWidget(l,i+3,16);
 
-    }
-}
+//    }
+//}
