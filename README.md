@@ -18,6 +18,6 @@
 
 
 # Digramme de classe
->On présente ci-dessous le diagramme de classe dans la partie console et la partie graphique.
+>On présente ci-dessous le diagramme de classe de la partie console et la partie graphique.
 >
 >![alt text](https://i.ibb.co/PY3nB0X/186493269-951275558781774-4261187433453887083-n.png)
