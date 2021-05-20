@@ -15,11 +15,13 @@
 >Une fois que l’atout choisi, un joueur commence à jouer sa première carte. Ici il n’est pas obligé de jouer un atout, il peut jouer n’importe quelle carte qu’il souhaite. On appellera le pli la collection de quatre cartes qui seront sur la table. Ensuite aux tours des autres joueurs, chaque joueur devrait jouer une carte du même bois que celle de la première carte du pli. Si un joueur n’en a pas, il sera obligé de jouer une carte atout. S’il n’a pas d’atout non plus, alors il est autorisé de jouer une carte quelconque. Quand chaque jouer à jouer une carte, on dit le pli est terminé et il est remporté par celui qui a joué la plus forte carte. S’il y des cartes atouts, alors la carte la plus forte sera l’atout plus fort, en respectant l’ordre que nous avons présentée au-dessus. S’il n’y a pas d’atout, la carte la plus forte est celle qui est la plus forte dans le bois de la première carte du pli. Celui qui vient de remporter le pli commence le pli suivant. Les équipes :
 >Les joueurs forment deux équipes de deux. Les joueurs 1 et 3 forment première équipe, et les joueurs 2 et 4 forment deuxième équipe. A la fin de la partie, chaque équipe compte ses points en additionnant les points des cartes qu’elle a gagnées. L’équipe qui a remporté le dernier pli a droit à 10 points supplémentaires. L’équipe qui a plus de points au total remporte la partie.
 
-![alt text](https://images.unsplash.com/photo-1621478658426-5f19461e165c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80)
 
 
 # Digramme de classe
 >On présente ci-dessous le diagramme de classe dans la partie console et la partie graphique.
+>
+>![alt text](https://i.ibb.co/PY3nB0X/186493269-951275558781774-4261187433453887083-n.png)
+
 ```mermaid
 graph LR
 A((Equipe))
