@@ -4,13 +4,13 @@
 #include "leaderboard.h"
 
 
-BoardGame::BoardGame(vector<Joueur>& J,QWidget* BG)
+BoardGame::BoardGame(vector<Joueur>& J)
 {   
-
+    QWidget* BG=new QWidget;
 
     QPushButton *QuitButton = new QPushButton("Quit"); //Creation d'un bouton Quitter pour le joueur desirer de quitter le jeu a tout moment
     QuitButton->setStyleSheet("background-color:white;");//Definition dy style du bouton
-
+    QPushButton *Replay = new QPushButton("Replay");
     QGridLayout* layout=new QGridLayout; //Creation d'un calque grid
 
     BG->setObjectName("BoardGame");//Defition du nom de l'object de la fentre BG
@@ -25,9 +25,8 @@ BoardGame::BoardGame(vector<Joueur>& J,QWidget* BG)
 
     layout->addWidget(QuitButton,12,0,Qt::AlignBottom); //Ajout du bouton quitter a une position donner
     BG->setStyleSheet("QWidget#BoardGame {background:url('C:/Users/Khali/OneDrive/Bureau/SchoolProject/cartes/GroundImageBigger') no-repeat center center fixed ;background-size:cover;}");
-
+    layout->addWidget(Replay,13,0,Qt::AlignBottom);
     QObject::connect(QuitButton,&QPushButton::clicked,BG,[BG](){delete BG;});//Creation d'une connection avec le bouton et la femeture de la fentre
-
 
     label=new QLabel("");
     label1=new QLabel("");
@@ -68,7 +67,8 @@ BoardGame::BoardGame(vector<Joueur>& J,QWidget* BG)
     layout->addWidget(label,0,14,2,3);//Ajout de la widget des score de la premiere equipe a la grid de travail
 
 
-            
+    QObject::connect(Replay,&QPushButton::clicked,[layout,&T,BG](){LeaderB B(T,layout,BG);});
+
 
     //vector<Carte> C=T.getJoueurs()[a].cartes_possible(T.getCardsOnTable(),(T.getAllCards()[20]).getCouleur());
 
@@ -83,28 +83,28 @@ BoardGame::BoardGame(vector<Joueur>& J,QWidget* BG)
         //Definition des tours de chaque joueur
         if(indexPlayer==0){
 
-            ShowLeftCards(layout,T);
+            ShowLeftCards(layout,T);j++;
             ShowBotCards(layout,T);
             ShowRightCards(layout,T);
             ShowTopCards(layout,T);
         }
         else if(indexPlayer==1){
 
-            ShowBotCards(layout,T);
+            ShowBotCards(layout,T);j++;
             ShowRightCards(layout,T);
             ShowTopCards(layout,T);
             ShowLeftCards(layout,T);
         }
         else if(indexPlayer==2){
 
-            ShowRightCards(layout,T);
+            ShowRightCards(layout,T);j++;
             ShowTopCards(layout,T);
             ShowLeftCards(layout,T);
             ShowBotCards(layout,T);
         }
         else{
 
-            ShowTopCards(layout,T);
+            ShowTopCards(layout,T);j++;
             ShowLeftCards(layout,T);
             ShowBotCards(layout,T);
             ShowRightCards(layout,T);
@@ -113,7 +113,7 @@ BoardGame::BoardGame(vector<Joueur>& J,QWidget* BG)
 
     i++;
     }
-    LeaderB B(T,layout,BG); //Relance de l'application a partir de la fenetre de remplissage de nom
+    //Relance de l'application a partir de la fenetre de remplissage de nom
 
 
 

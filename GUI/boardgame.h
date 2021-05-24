@@ -19,7 +19,7 @@ class BoardGame
 
 {
 public:
-    BoardGame(vector<Joueur>&,QWidget*);
+    BoardGame(vector<Joueur>&);
 
     //Methode qui affiche les cartes de chaque cote du terrain lors du tour du joueur desirer
     int ShowLeftCards(QGridLayout*,Table&);
