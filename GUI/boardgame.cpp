@@ -40,10 +40,12 @@ BoardGame::BoardGame(vector<Joueur>& J)
 
     Table T(J,T1,T2);                  //Creation d'un objet table qui fera de reference entre toutes les classes duant le jeu
     static int b;
+    int j=1;
+
     do{
         T.melange();                    //Melange des 32 cartes se trouvant dans AllCards
-        distribute(T,5,21);            //distribue 5 cartes a chacun des joueurs
-        b=retour_indice(T,layout);            //Proposer une carte sur table pour tous les joueurs et retourne lindice de celui qui la saisie
+        distribute(T,5,21);             //distribue 5 cartes a chacun des joueurs
+        b=retour_indice(T,layout,j);      //Proposer une carte sur table pour tous les joueurs et retourne lindice de celui qui la saisie
     }while (b==-1);
     distribute(T,3,33,21,b);
 
@@ -74,7 +76,22 @@ BoardGame::BoardGame(vector<Joueur>& J)
 
     BG->setLayout(layout);
     BG->showFullScreen();
+    auto verif=verify;
+    for (int i=0;i<4;i++){
+        int k=-1;
+    QEventLoop* loop=new QEventLoop;
 
+            qDebug()<<"Entering Loop";
+            QLabel* label=new QLabel(QString::fromStdString((T.getAllCards()[20]).getValeur()+" "+(T.getAllCards()[20]).getCouleur())) ;
+            QLineEdit* Response=new QLineEdit;
+            Response->setPlaceholderText("Yes/No");
+            layout->addWidget(label,3,6);
+            layout->addWidget(Response,4,6);
+            QObject::connect(Response,&QLineEdit::editingFinished,[Response,label,loop,&k,&i,&j,verif](){Response->close();label->close();loop->exit();j=verif(Response->displayText().toLocal8Bit().constData(),i,k);});
+
+    loop->exec();
+    if (k>0) i=4;
+}
     int i=0;
     while(i<8){ //Boucle pour les 8 pli qui doivent etre jouer
         int j=0;
