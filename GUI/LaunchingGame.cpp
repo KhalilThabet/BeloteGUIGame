@@ -2,14 +2,19 @@
 #include "LaunchingGame.h"
 
 
-void launchingGame::close(QWidget* w,vector<Joueur>& J,QWidget* NewWindow){
+void launchingGame::close(QWidget* w,vector<Joueur>& J){
     //Fonction qui sert de transition entre deux fenetre creer dans la fonction start
-    if (J.size()==4) {
+    qDebug()<<J.size();
+    if (J.size()%4==0) {
+        qDebug()<<QString::fromStdString(J[0].getNom());
+        qDebug()<<QString::fromStdString(J[1].getNom());
+        qDebug()<<QString::fromStdString(J[2].getNom());
+        qDebug()<<QString::fromStdString(J[3].getNom());
         //Dans le cas ou le remplissage de noms termine , une operation de fermeture et de ouverture se lance
-        DynamicWidget* LoadingWindow=loading(); // Fenetre animation de chargement de l'application
+        QWidget* LoadingWindow=loading(); // Fenetre animation de chargement de l'application
         QTimer::singleShot(3000,[LoadingWindow](){LoadingWindow->close();});
         w->close();//fermeture de la fenetre de remplissage de noms
-        BoardGame Je(J,NewWindow); //Creation d'une instance de la classe BoardGame qui lancera le jeu
+        BoardGame Je(J); //Creation d'une instance de la classe BoardGame qui lancera le jeu
 
     }
 }
@@ -25,12 +30,10 @@ int launchingGame::start()
     static vector<Joueur> Players_list={}; //Creation d'un vecteur de joueur qui servira a stocker les joueurs stockers
 
     QWidget *w=new QWidget; //Creation d'une nouvelle fenetre w comme window
-    QWidget *BoardGame=new QWidget;//Creation d'une fentre qui servira de la table de jeu
 
     //Definition du style de l'arriere plan de la fenetre w
     w->setStyleSheet("background:url('C:/Users/Khali/OneDrive/Bureau/Qt Training/Login1.png') no-repeat center fixed;");
 
-    string nom;
     QGridLayout* layout=new QGridLayout; //Creation d'un calque de travail
 
     for (int i = 0;i < 4;i++)
@@ -51,13 +54,13 @@ int launchingGame::start()
 
           //creation d'une connection entre les espaces des noms et une fonction lambda qui contient les operations desirees
           QObject::connect(nom,&QLineEdit::editingFinished,
-                           [nom,i,w,label,BoardGame,this](){nom->hide(); //Cacher la widget de remplissage de nom pour la ligne i
+                           [nom,i,w,label,this](){nom->hide(); //Cacher la widget de remplissage de nom pour la ligne i
                            label->setText("Received"); // Affectation du texte Received a la place de cette ligne
                            //Definition du style de ce texte
                            label->setStyleSheet("background:transparent;margin-left:500;color:green; font-family: 'Raleway',sans-serif; font-size: 62px; font-weight: 800; line-height: 72px; text-align: center; text-transform: uppercase");
                            Joueur J(nom->displayText().toLocal8Bit().constData(),i+1);//Creation d'un objet joueur et affectation du rang
                            Players_list.push_back(J);// Ajouter le joueur au conteneur static de joueur creer tout en haut de la fonction start
-                           close(w,Players_list,BoardGame);}); //Appel a la fonction Close pour la transtion entre les fenetres
+                           close(w,Players_list);}); //Appel a la fonction Close pour la transtion entre les fenetres
 
 
     }

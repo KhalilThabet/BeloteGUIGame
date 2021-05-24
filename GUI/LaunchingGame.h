@@ -14,7 +14,7 @@ class launchingGame{
     friend class BoardGame;
 public:
     launchingGame(){};
-    void close(QWidget*,vector<Joueur>&,QWidget*);
+    void close(QWidget*,vector<Joueur>&);
     DynamicWidget* loading();
     int start();
 
